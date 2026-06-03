@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
@@ -18,8 +19,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-900/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="font-display text-lg font-bold tracking-tight">
-          Renard des Surfaces
+        <Link href="/" className="flex items-center gap-2.5" aria-label="Renard des Surfaces — accueil">
+          <Image src="/brand/logo.svg" alt="" width={32} height={32} priority />
+          <span className="font-display text-lg font-bold tracking-tight">Renard des Surfaces</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Principale">

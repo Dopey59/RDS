@@ -20,18 +20,12 @@ export function Footer() {
           <Link href="/mentions-legales" className="text-mist hover:text-paper">
             {t("legal.mentions")}
           </Link>
-          <a
-            href="https://renarddessurfaces.net/politique-de-confidentialite/"
-            className="text-mist hover:text-paper"
-          >
+          <Link href="/politique-de-confidentialite" className="text-mist hover:text-paper">
             {t("legal.privacy")}
-          </a>
-          <a
-            href="https://renarddessurfaces.net/conditions-generales/"
-            className="text-mist hover:text-paper"
-          >
+          </Link>
+          <Link href="/conditions-generales" className="text-mist hover:text-paper">
             {t("legal.terms")}
-          </a>
+          </Link>
         </nav>
 
         <nav className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label="Réseaux sociaux">

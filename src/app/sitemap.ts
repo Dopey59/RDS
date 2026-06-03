@@ -1,7 +1,14 @@
 import type { MetadataRoute } from "next";
 
 const BASE = "https://renarddessurfaces.net";
-const PATHS = ["", "/partenaires", "/contact", "/mentions-legales"];
+const PATHS = [
+  "",
+  "/partenaires",
+  "/contact",
+  "/mentions-legales",
+  "/politique-de-confidentialite",
+  "/conditions-generales",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return PATHS.map((p) => ({
