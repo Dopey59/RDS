@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* ---- Design tokens RDS (charte officielle + dérivés) ---- */
+@theme {
+  --color-ink-900: #03142e; /* fond              */
+  --color-ink-800: #052047; /* surface élevée    */
+  --color-ink-700: #0a2d5c; /* bordures / cards  */
+
+  --color-blue-300: #4da6ff; /* secondaire officiel */
+  --color-blue-500: #0e6fd6;
+  --color-blue-600: #0055a4; /* primaire officiel   */
+  --color-blue-700: #003e7a;
+
+  --color-orange-400: #ff8a3d; /* glow        */
+  --color-orange-500: #ff6b00; /* accent      */
+  --color-orange-600: #e55f00; /* hover/press */
+
+  --color-paper: #ffffff;
+  --color-mist: rgba(255, 255, 255, 0.72);
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    background-color: var(--color-ink-900);
+    color: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue-300);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  /* Dégradé radiant maîtrisé (hero) */
+  .bg-radiant {
+    background:
+      radial-gradient(1100px 760px at 72% -12%, rgba(77, 166, 255, 0.4), transparent 62%),
+      radial-gradient(820px 560px at 12% 8%, rgba(255, 107, 0, 0.16), transparent 58%),
+      radial-gradient(140% 120% at 50% 120%, #0e6fd6 0%, #0055a4 30%, #03142e 78%);
+  }
+  /* Halo signature derrière la carte à gratter */
+  .glow-orange {
+    background: radial-gradient(closest-side, rgba(255, 107, 0, 0.55), transparent);
+  }
+  /* Chiffres tabulaires (countdown / scores) */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  /* Voile de bruit anti-banding sur les grands dégradés */
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}

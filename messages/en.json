@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "howItWorks": "How it works",
+    "partners": "Partners",
+    "faq": "FAQ",
+    "play": "Download"
+  },
+  "hero": {
+    "badge": "100% free · not betting, not predictions, not gambling",
+    "title": "Every goal can",
+    "titleAccent": "make you win",
+    "subtitle": "Pick 3 matches. On every goal, you get an alert and scratch your card. Earn points and prizes from our partners. Game on.",
+    "ctaAppStore": "App Store",
+    "ctaPlayStore": "Google Play",
+    "card": {
+      "hint": "Scratch to reveal",
+      "prizeLabel": "Instant prize",
+      "points": "50 points"
+    }
+  },
+  "footer": {
+    "tagline": "The football scratch app that turns every goal into shared emotion.",
+    "disclaimer": "Renard des Surfaces is not sports betting, not predictions, and not gambling. No stake, no real-money winnings.",
+    "legal": {
+      "mentions": "Legal notice",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "rights": "All rights reserved."
+  }
+}

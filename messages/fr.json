@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "howItWorks": "Comment ça marche",
+    "partners": "Partenaires",
+    "faq": "FAQ",
+    "play": "Télécharger"
+  },
+  "hero": {
+    "badge": "100% gratuit · ni pari, ni pronostic, ni jeu d'argent",
+    "title": "Chaque but peut",
+    "titleAccent": "te faire gagner",
+    "subtitle": "Choisis 3 matchs. À chaque but, tu reçois une alerte et tu grattes ta carte. Des points, des lots offerts par nos partenaires. À toi de jouer.",
+    "ctaAppStore": "App Store",
+    "ctaPlayStore": "Google Play",
+    "card": {
+      "hint": "Gratte pour révéler",
+      "prizeLabel": "Lot immédiat",
+      "points": "50 points"
+    }
+  },
+  "footer": {
+    "tagline": "L'app de grattage football qui transforme chaque but en émotion partagée.",
+    "disclaimer": "Renard des Surfaces n'est ni un pari sportif, ni un pronostic, ni un jeu d'argent. Aucune mise, aucun gain en argent réel.",
+    "legal": {
+      "mentions": "Mentions légales",
+      "privacy": "Confidentialité",
+      "terms": "CGU"
+    },
+    "rights": "Tous droits réservés."
+  }
+}
