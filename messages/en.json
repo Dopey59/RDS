@@ -86,6 +86,64 @@
     "subtitle": "Download the app, pick your matches, and let the goals decide.",
     "button": "Download Renard des Surfaces"
   },
+  "partners": {
+    "eyebrow": "Partners & brands",
+    "title": "The only ad format tied to a moment of joy",
+    "subtitle": "At the moment of the goal, your brand offers the prize. Precise targeting, active engagement, and a brand image tied to winning — not to interruption.",
+    "cta": "Become a partner",
+    "model": {
+      "title": "Three ways to work together",
+      "cards": [
+        { "title": "Sponsoring", "text": "Your logo tied to the matches, shown to players at the peak of attention." },
+        { "title": "Branded prizes", "text": "You provide your own prizes (vouchers, codes, products): measurable footfall to your stores." },
+        { "title": "Partnerships", "text": "Exclusive experiences in exchange for visibility, with no prize cost." }
+      ]
+    },
+    "compare": {
+      "title": "What no other format combines",
+      "head": ["Criterion", "Digital ads", "Billboards", "RDS"],
+      "rows": [
+        ["Context", "Intrusive", "Passive", "Post-goal moment of joy"],
+        ["Targeting", "Approximate", "On-site crowd", "Precise (city / area)"],
+        ["Measurement", "Impressions", "Hard", "Prizes distributed and tracked"],
+        ["Engagement", "Scrolled / ignored", "Seen passively", "Active action (scratch)"],
+        ["Brand image", "Weak", "Neutral", "Strong (tied to the win)"]
+      ]
+    },
+    "funnel": {
+      "title": "The prize isn't a reward, it's a doorway",
+      "steps": ["The player wins a voucher", "They visit the store", "They spend beyond the voucher", "They come back, loyal"]
+    },
+    "form": {
+      "title": "Let's talk about your campaign",
+      "name": "Name",
+      "company": "Company",
+      "email": "Work email",
+      "budget": "Estimated budget (optional)",
+      "message": "Your project",
+      "submit": "Send request",
+      "sending": "Sending…",
+      "success": "Thanks! We'll get back to you very soon.",
+      "error": "Something went wrong. Try again or email contact@renard-des-surfaces.com.",
+      "invalid": "Please check the fields in red."
+    }
+  },
+  "legal": {
+    "mentions": {
+      "title": "Legal notice",
+      "editor": "Publisher: SAS Grand Jeu, a simplified joint-stock company with share capital of €6,250, registered with the Lille Métropole Trade and Companies Register under number 921 110 938.",
+      "address": "Registered office: 46, avenue de l'amiral Courbet, 59150 Lambersart, France.",
+      "director": "Publication director: Julien Devos.",
+      "contact": "Contact: grandjeu@renarddessurfaces.com — +33 6 37 94 77 53.",
+      "host": "Hosting: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France — +33 9 72 10 10 07.",
+      "disclaimer": "Renard des Surfaces is a free game, with no stake and no real-money winnings. It is not betting, not predictions, and not gambling."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "body": "A question? Email us at grandjeu@renarddessurfaces.com. Are you a brand? See the Partners page.",
+    "email": "grandjeu@renarddessurfaces.com"
+  },
   "footer": {
     "tagline": "The football scratch app that turns every goal into shared emotion.",
     "disclaimer": "Renard des Surfaces is not sports betting, not predictions, and not gambling. No stake, no real-money winnings.",

@@ -10,9 +10,9 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: "/comment-ca-marche", label: t("howItWorks") },
+    { href: "/#comment", label: t("howItWorks") },
     { href: "/partenaires", label: t("partners") },
-    { href: "/faq", label: t("faq") },
+    { href: "/#faq", label: t("faq") },
   ] as const;
 
   return (

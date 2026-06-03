@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
   const { locale } = await params;
   const fr = locale === "fr";
   return {
-    metadataBase: new URL("https://renard-des-surfaces.com"),
+    metadataBase: new URL("https://renarddessurfaces.net"),
     title: {
       default: "Renard des Surfaces — " + (fr ? "Le jeu de grattage football" : "The football scratch game"),
       template: "%s · Renard des Surfaces",

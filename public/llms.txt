@@ -1,0 +1,19 @@
+# Renard des Surfaces (RDS)
+
+> Application mobile de jeu de grattage football, 100% gratuite. Édité par SAS Grand Jeu.
+
+## Le concept
+- L'utilisateur choisit 3 matchs avant le coup d'envoi.
+- À chaque but marqué dans sa sélection, il reçoit une notification.
+- Il gratte une carte (~1,5 s) et découvre des points (classement) ou un lot offert par un partenaire.
+- Ce n'est ni un pari sportif, ni un pronostic, ni un jeu d'argent : aucune mise, aucun gain en argent réel.
+
+## Pour qui
+- Joueurs : grand public, aucune connaissance foot requise, gratuit.
+- Marques / sponsors : visibilité associée à un moment de joie, lots brandés, trafic mesurable en enseigne.
+
+## Liens
+- Site : https://renarddessurfaces.net
+- Contact : grandjeu@renarddessurfaces.com
+- Conditions générales : https://renarddessurfaces.net/conditions-generales/
+- Politique de confidentialité : https://renarddessurfaces.net/politique-de-confidentialite/

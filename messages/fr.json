@@ -86,6 +86,64 @@
     "subtitle": "Télécharge l'app, choisis tes matchs, et laisse les buts décider.",
     "button": "Télécharger Renard des Surfaces"
   },
+  "partners": {
+    "eyebrow": "Partenaires & marques",
+    "title": "Le seul format pub associé à un moment de joie",
+    "subtitle": "Au moment du but, votre marque offre le lot. Ciblage précis, engagement actif, et une image associée au gain — pas à l'interruption.",
+    "cta": "Devenir partenaire",
+    "model": {
+      "title": "Trois façons de travailler ensemble",
+      "cards": [
+        { "title": "Sponsoring", "text": "Votre logo associé aux matchs, exposé aux joueurs au moment de plus forte attention." },
+        { "title": "Lots brandés", "text": "Vous fournissez vos propres lots (bons, codes, produits) : un trafic mesurable vers vos enseignes." },
+        { "title": "Partenariats", "text": "Des expériences exclusives en échange d'une visibilité, sans coût de dotation." }
+      ]
+    },
+    "compare": {
+      "title": "Ce qu'aucun autre format ne réunit",
+      "head": ["Critère", "Pub digitale", "Affichage", "RDS"],
+      "rows": [
+        ["Contexte", "Intrusif", "Passif", "Moment de joie post-but"],
+        ["Ciblage", "Approximatif", "Spectateurs présents", "Précis (ville / quartier)"],
+        ["Mesure", "Impressions", "Difficile", "Lots distribués et traçables"],
+        ["Engagement", "Scroll / ignoré", "Vu passivement", "Action active (grattage)"],
+        ["Image de marque", "Faible", "Neutre", "Forte (associée au gain)"]
+      ]
+    },
+    "funnel": {
+      "title": "Le lot n'est pas une récompense, c'est une porte d'entrée",
+      "steps": ["Le joueur gagne un bon", "Il se déplace en enseigne", "Il consomme au-delà du bon", "Il revient, fidélisé"]
+    },
+    "form": {
+      "title": "Parlons de votre campagne",
+      "name": "Nom",
+      "company": "Société",
+      "email": "Email professionnel",
+      "budget": "Budget envisagé (optionnel)",
+      "message": "Votre projet",
+      "submit": "Envoyer la demande",
+      "sending": "Envoi…",
+      "success": "Merci ! Nous revenons vers vous très vite.",
+      "error": "Une erreur est survenue. Réessayez ou écrivez-nous à contact@renard-des-surfaces.com.",
+      "invalid": "Vérifiez les champs en rouge."
+    }
+  },
+  "legal": {
+    "mentions": {
+      "title": "Mentions légales",
+      "editor": "Éditeur : SAS Grand Jeu, société par actions simplifiée au capital de 6 250 €, immatriculée au RCS de Lille Métropole sous le numéro 921 110 938.",
+      "address": "Siège social : 46, avenue de l'amiral Courbet, 59150 Lambersart.",
+      "director": "Directeur de la publication : Julien Devos.",
+      "contact": "Contact : grandjeu@renarddessurfaces.com — 06 37 94 77 53.",
+      "host": "Hébergement : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France — 09 72 10 10 07.",
+      "disclaimer": "Renard des Surfaces est un jeu gratuit, sans mise ni gain en argent réel. Ce n'est ni un pari sportif, ni un pronostic, ni un jeu d'argent."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "body": "Une question ? Écrivez-nous à grandjeu@renarddessurfaces.com. Vous êtes une marque ? Voir la page Partenaires.",
+    "email": "grandjeu@renarddessurfaces.com"
+  },
   "footer": {
     "tagline": "L'app de grattage football qui transforme chaque but en émotion partagée.",
     "disclaimer": "Renard des Surfaces n'est ni un pari sportif, ni un pronostic, ni un jeu d'argent. Aucune mise, aucun gain en argent réel.",
