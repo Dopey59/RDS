@@ -17,7 +17,10 @@
   },
   "prizes": {
     "title": "What you can win",
-    "subtitle": "Real prizes offered by our partners, every matchday."
+    "subtitle": "Real prizes offered by our partners, every matchday.",
+    "ctaWin": "Win {prize} now",
+    "note": "For free, through the scratch — one goal is enough.",
+    "pick": "Pick your prize"
   },
   "winners": {
     "title": "Latest rewarded foxes",

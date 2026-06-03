@@ -17,7 +17,10 @@
   },
   "prizes": {
     "title": "Ce que tu peux gagner",
-    "subtitle": "Des lots concrets offerts par nos partenaires, à chaque journée."
+    "subtitle": "Des lots concrets offerts par nos partenaires, à chaque journée.",
+    "ctaWin": "Gagner {prize} maintenant",
+    "note": "Gratuitement, via le grattage — un but suffit.",
+    "pick": "Choisis ton lot"
   },
   "winners": {
     "title": "Les derniers renards récompensés",

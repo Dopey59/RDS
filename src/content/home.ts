@@ -65,6 +65,28 @@ export const news: Record<Locale, NewsRow[]> = {
   ],
 };
 
+export type ShowcasePrize = { id: string; image: string; name: string; cta: string };
+
+// Lots vedettes (visuels à déposer dans public/photos/prizes/).
+export const showcasePrizes: Record<Locale, ShowcasePrize[]> = {
+  fr: [
+    { id: "ps5", image: "/photos/prizes/ps5.png", name: "PS5", cta: "une PS5" },
+    { id: "iphone", image: "/photos/prizes/iphone.png", name: "iPhone 15 Pro", cta: "un iPhone 15 Pro" },
+    { id: "ipad", image: "/photos/prizes/ipad.png", name: "iPad mini", cta: "un iPad mini" },
+    { id: "airpods", image: "/photos/prizes/airpods.png", name: "AirPods Max", cta: "des AirPods Max" },
+    { id: "giftcard", image: "/photos/prizes/giftcard.png", name: "Carte cadeau 50 €", cta: "une carte cadeau" },
+    { id: "jersey", image: "/photos/prizes/jersey.png", name: "Maillot de foot", cta: "un maillot" },
+  ],
+  en: [
+    { id: "ps5", image: "/photos/prizes/ps5.png", name: "PS5", cta: "a PS5" },
+    { id: "iphone", image: "/photos/prizes/iphone.png", name: "iPhone 15 Pro", cta: "an iPhone 15 Pro" },
+    { id: "ipad", image: "/photos/prizes/ipad.png", name: "iPad mini", cta: "an iPad mini" },
+    { id: "airpods", image: "/photos/prizes/airpods.png", name: "AirPods Max", cta: "AirPods Max" },
+    { id: "giftcard", image: "/photos/prizes/giftcard.png", name: "€50 gift card", cta: "a €50 gift card" },
+    { id: "jersey", image: "/photos/prizes/jersey.png", name: "Football jersey", cta: "a jersey" },
+  ],
+};
+
 export function localeKey(locale: string): Locale {
   return locale === "en" ? "en" : "fr";
 }
