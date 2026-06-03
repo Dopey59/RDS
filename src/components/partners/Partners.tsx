@@ -14,14 +14,16 @@ export function Partners() {
 
   return (
     <>
-      {/* Hero B2B */}
-      <Section className="bg-radiant noise relative overflow-hidden">
+      {/* Hero B2B — bandeau bleu */}
+      <Section tone="blue">
         <Reveal>
-          <span className="text-xs uppercase tracking-widest text-orange-400">{t("eyebrow")}</span>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold md:text-5xl">
+          <span className="text-xs font-semibold uppercase tracking-widest text-white/70">
+            {t("eyebrow")}
+          </span>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold text-white md:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-mist">{t("subtitle")}</p>
+          <p className="mt-5 max-w-xl text-lg text-white/80">{t("subtitle")}</p>
           <a
             href="#contact"
             className="mt-8 inline-flex min-h-[44px] items-center rounded-full bg-orange-500 px-6 text-sm font-semibold text-ink-900 hover:bg-orange-600"
@@ -39,7 +41,7 @@ export function Partners() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {cards.map((c, i) => (
             <Reveal key={i} delay={i * 0.06}>
-              <div className="h-full rounded-[var(--radius-card)] bg-ink-800 p-6 ring-1 ring-white/10">
+              <div className="h-full rounded-[var(--radius-card)] border border-line bg-paper p-6 shadow-sm">
                 <h3 className="text-lg font-semibold">{c.title}</h3>
                 <p className="mt-2 text-sm text-mist">{c.text}</p>
               </div>
@@ -49,18 +51,18 @@ export function Partners() {
       </Section>
 
       {/* Comparatif */}
-      <Section className="bg-ink-800/30">
+      <Section tone="cloud">
         <Reveal>
           <h2 className="font-display text-3xl font-bold md:text-4xl">{t("compare.title")}</h2>
         </Reveal>
-        <div className="mt-8 overflow-x-auto">
+        <div className="mt-8 overflow-x-auto rounded-[var(--radius-card)] border border-line bg-paper">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm">
             <thead>
-              <tr>
+              <tr className="bg-blue-50">
                 {head.map((h, i) => (
                   <th
                     key={i}
-                    className={`p-3 font-semibold ${i === head.length - 1 ? "text-orange-400" : "text-mist"}`}
+                    className={`p-4 font-semibold ${i === head.length - 1 ? "text-orange-600" : "text-ink-700"}`}
                   >
                     {h}
                   </th>
@@ -69,11 +71,11 @@ export function Partners() {
             </thead>
             <tbody>
               {rows.map((r, i) => (
-                <tr key={i} className="border-t border-white/10">
+                <tr key={i} className="border-t border-line">
                   {r.map((cell, j) => (
                     <td
                       key={j}
-                      className={`p-3 ${j === r.length - 1 ? "font-medium text-paper" : "text-mist"}`}
+                      className={`p-4 ${j === r.length - 1 ? "font-semibold text-ink-900" : "text-mist"}`}
                     >
                       {cell}
                     </td>
@@ -95,9 +97,11 @@ export function Partners() {
         <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={i} delay={i * 0.06}>
-              <li className="h-full rounded-[var(--radius-card)] bg-ink-800 p-6 ring-1 ring-white/10">
-                <span className="font-display text-2xl font-bold text-orange-500">{i + 1}</span>
-                <p className="mt-3 text-sm text-mist">{s}</p>
+              <li className="h-full rounded-[var(--radius-card)] border border-line bg-paper p-6 shadow-sm">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500 font-display font-bold text-ink-900">
+                  {i + 1}
+                </span>
+                <p className="mt-4 text-sm text-mist">{s}</p>
               </li>
             </Reveal>
           ))}
@@ -105,8 +109,8 @@ export function Partners() {
       </Section>
 
       {/* Formulaire */}
-      <Section id="contact">
-        <div className="mx-auto max-w-xl rounded-[2rem] bg-ink-800 p-8 ring-1 ring-white/10">
+      <Section id="contact" tone="cloud">
+        <div className="mx-auto max-w-xl rounded-[2rem] border border-line bg-paper p-8 shadow-sm">
           <LeadForm />
         </div>
       </Section>

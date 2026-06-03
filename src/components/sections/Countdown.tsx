@@ -31,14 +31,14 @@ export function Countdown() {
 
   return (
     <div>
-      <p className="mb-2 text-xs uppercase tracking-widest text-mist">{t("title")}</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-mist">{t("title")}</p>
       <div className="flex gap-3">
         {cells.map((c, i) => (
           <div
             key={i}
-            className="min-w-[3.5rem] rounded-xl bg-white/5 px-3 py-2 text-center ring-1 ring-white/10"
+            className="min-w-[3.5rem] rounded-xl bg-cloud px-3 py-2 text-center ring-1 ring-line"
           >
-            <div className="tnum font-display text-2xl font-bold">
+            <div className="tnum font-display text-2xl font-bold text-ink-900">
               {String(c.v).padStart(2, "0")}
             </div>
             <div className="text-[10px] uppercase text-mist">{c.l}</div>

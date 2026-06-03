@@ -9,15 +9,15 @@ export function Faq() {
   const items = t.raw("items") as Qa[];
 
   return (
-    <Section id="faq" className="bg-ink-800/30">
+    <Section id="faq" tone="cloud">
       <Reveal>
         <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
       </Reveal>
 
-      <div className="mx-auto mt-10 max-w-3xl divide-y divide-white/10">
+      <div className="mx-auto mt-10 max-w-3xl divide-y divide-line rounded-[var(--radius-card)] border border-line bg-paper px-6">
         {items.map((qa, i) => (
           <details key={i} className="group py-4">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-medium">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-medium text-ink-900">
               {qa.q}
               <span className="text-orange-500 transition-transform group-open:rotate-45" aria-hidden>
                 +

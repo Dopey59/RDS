@@ -1,9 +1,33 @@
 {
   "nav": {
     "howItWorks": "How it works",
+    "prizes": "Prizes",
     "partners": "Partners",
     "faq": "FAQ",
     "play": "Download"
+  },
+  "matchSchedule": {
+    "title": "Upcoming fixtures",
+    "subtitle": "Pick your 3 matches of the day and let the goals decide.",
+    "cta": "See all in the app"
+  },
+  "partnersBand": {
+    "title": "They offer the prizes",
+    "soon": "Your brand here"
+  },
+  "prizes": {
+    "title": "What you can win",
+    "subtitle": "Real prizes offered by our partners, every matchday."
+  },
+  "winners": {
+    "title": "Latest rewarded foxes",
+    "subtitle": "The player leaderboard, straight from the app.",
+    "points": "pts",
+    "cta": "Join the leaderboard"
+  },
+  "news": {
+    "title": "Football news",
+    "subtitle": "The game, the community and behind the scenes."
   },
   "hero": {
     "badge": "100% free · not betting, not predictions, not gambling",

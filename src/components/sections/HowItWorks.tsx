@@ -9,7 +9,7 @@ export function HowItWorks() {
   const steps = t.raw("steps") as Step[];
 
   return (
-    <Section id="comment">
+    <Section id="comment" tone="cloud">
       <Reveal>
         <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
         <p className="mt-3 max-w-xl text-mist">{t("subtitle")}</p>
@@ -18,7 +18,7 @@ export function HowItWorks() {
       <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal key={i} delay={i * 0.06}>
-            <li className="h-full rounded-[var(--radius-card)] bg-ink-800 p-6 ring-1 ring-white/10">
+            <li className="h-full rounded-[var(--radius-card)] border border-line bg-paper p-6 shadow-sm">
               <span className="font-display text-2xl font-bold text-orange-500">
                 {String(i + 1).padStart(2, "0")}
               </span>

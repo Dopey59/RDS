@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import confetti from "canvas-confetti";
 
 type Props = {
   hint: string;
@@ -101,16 +102,40 @@ export function ScratchCard({ hint, prizeLabel, prize }: Props) {
     };
   }, [paintCover]);
 
+  // Confetti à la révélation gagnante
+  useEffect(() => {
+    if (!revealed) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rect = canvasRef.current?.getBoundingClientRect();
+    const origin = rect
+      ? {
+          x: (rect.left + rect.width / 2) / window.innerWidth,
+          y: (rect.top + rect.height / 2) / window.innerHeight,
+        }
+      : { x: 0.5, y: 0.4 };
+    confetti({
+      particleCount: 90,
+      spread: 72,
+      origin,
+      scalar: 0.9,
+      colors: ["#FF6B00", "#0055A4", "#4DA6FF", "#ffffff"],
+    });
+  }, [revealed]);
+
   return (
     <div className="relative">
-      <div className="glow-orange absolute -inset-8 -z-10 blur-2xl" aria-hidden />
       <div
-        className="relative flex flex-col items-center justify-center overflow-hidden rounded-[var(--radius-card)] bg-ink-800 ring-1 ring-white/10"
+        className="absolute -inset-6 -z-10 rounded-full blur-2xl"
+        style={{ background: "radial-gradient(closest-side, rgba(255,107,0,.35), transparent)" }}
+        aria-hidden
+      />
+      <div
+        className="relative flex flex-col items-center justify-center overflow-hidden rounded-[var(--radius-card)] bg-white shadow-xl ring-1 ring-line"
         style={{ width: W, height: H }}
       >
         <div className="flex flex-col items-center gap-2 text-center">
           <span className="text-xs uppercase tracking-widest text-mist">{prizeLabel}</span>
-          <span className="font-display text-4xl font-bold text-orange-400">{prize}</span>
+          <span className="font-display text-4xl font-bold text-orange-500">{prize}</span>
         </div>
 
         <canvas

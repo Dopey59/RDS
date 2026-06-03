@@ -1,9 +1,33 @@
 {
   "nav": {
     "howItWorks": "Comment ça marche",
+    "prizes": "Lots",
     "partners": "Partenaires",
     "faq": "FAQ",
     "play": "Télécharger"
+  },
+  "matchSchedule": {
+    "title": "Les prochains rendez-vous",
+    "subtitle": "Choisis tes 3 matchs du jour et laisse les buts décider.",
+    "cta": "Tout voir dans l'app"
+  },
+  "partnersBand": {
+    "title": "Ils offrent les lots",
+    "soon": "Votre marque ici"
+  },
+  "prizes": {
+    "title": "Ce que tu peux gagner",
+    "subtitle": "Des lots concrets offerts par nos partenaires, à chaque journée."
+  },
+  "winners": {
+    "title": "Les derniers renards récompensés",
+    "subtitle": "Le classement des joueurs, directement issu de l'application.",
+    "points": "pts",
+    "cta": "Rejoindre le classement"
+  },
+  "news": {
+    "title": "Actus foot",
+    "subtitle": "Le jeu, la communauté et les coulisses."
   },
   "hero": {
     "badge": "100% gratuit · ni pari, ni pronostic, ni jeu d'argent",

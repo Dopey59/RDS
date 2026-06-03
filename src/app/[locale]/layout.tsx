@@ -39,7 +39,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${clashDisplay.variable} ${inter.variable}`}>
-      <body className="min-h-dvh bg-ink-900 text-paper">
+      <body className="min-h-dvh bg-paper text-body">
         <NextIntlClientProvider>
           <Header />
           <main>{children}</main>

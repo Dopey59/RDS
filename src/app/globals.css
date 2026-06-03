@@ -1,34 +1,63 @@
 @import "tailwindcss";
 
-/* ---- Design tokens RDS (charte officielle + dérivés) ---- */
+/* ---- Design tokens RDS — thème CLAIR (fond blanc, accents dosés) ---- */
 @theme {
-  --color-ink-900: #03142e; /* fond              */
-  --color-ink-800: #052047; /* surface élevée    */
-  --color-ink-700: #0a2d5c; /* bordures / cards  */
+  --color-paper: #ffffff; /* fond principal      */
+  --color-cloud: #f4f6fb; /* sections/cartes alt */
+  --color-line: #e6e9f0; /* bordures            */
 
-  --color-blue-300: #4da6ff; /* secondaire officiel */
-  --color-blue-500: #0e6fd6;
-  --color-blue-600: #0055a4; /* primaire officiel   */
+  --color-ink-900: #0b1b33; /* titres, bandeaux sombres */
+  --color-ink-700: #22304d;
+  --color-body: #3b4658; /* texte courant  */
+  --color-mist: #6b7689; /* texte secondaire */
+
+  --color-blue-50: #eaf2fb;
+  --color-blue-300: #4da6ff;
+  --color-blue-600: #0055a4; /* primaire officiel */
   --color-blue-700: #003e7a;
 
-  --color-orange-400: #ff8a3d; /* glow        */
-  --color-orange-500: #ff6b00; /* accent      */
-  --color-orange-600: #e55f00; /* hover/press */
-
-  --color-paper: #ffffff;
-  --color-mist: rgba(255, 255, 255, 0.72);
+  --color-orange-400: #ff8a3d;
+  --color-orange-500: #ff6b00; /* accent officiel */
+  --color-orange-600: #e55f00;
 
   --radius-card: 1.25rem;
+
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-shine: shine 3s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
   body {
     font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-    background-color: var(--color-ink-900);
-    color: var(--color-paper);
+    background-color: var(--color-paper);
+    color: var(--color-body);
     -webkit-font-smoothing: antialiased;
   }
   h1,
@@ -36,39 +65,46 @@
   h3,
   .font-display {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-    letter-spacing: -0.01em;
+    color: var(--color-ink-900);
+    letter-spacing: -0.015em;
   }
   :focus-visible {
-    outline: 2px solid var(--color-blue-300);
+    outline: 2px solid var(--color-blue-600);
     outline-offset: 3px;
     border-radius: 4px;
   }
 }
 
 @layer utilities {
-  /* Dégradé radiant maîtrisé (hero) */
-  .bg-radiant {
+  /* Bandeau bleu d'emphase (texte blanc) — façon "section colorée" */
+  .band-blue {
+    background: linear-gradient(135deg, #0a63b8 0%, #0055a4 45%, #013a72 100%);
+  }
+  /* Halo radiant SUBTIL et localisé (hero sur fond blanc) */
+  .hero-glow {
     background:
-      radial-gradient(1100px 760px at 72% -12%, rgba(77, 166, 255, 0.4), transparent 62%),
-      radial-gradient(820px 560px at 12% 8%, rgba(255, 107, 0, 0.16), transparent 58%),
-      radial-gradient(140% 120% at 50% 120%, #0e6fd6 0%, #0055a4 30%, #03142e 78%);
+      radial-gradient(680px 420px at 88% -10%, rgba(77, 166, 255, 0.18), transparent 60%),
+      radial-gradient(520px 360px at 0% 0%, rgba(255, 107, 0, 0.08), transparent 60%);
   }
-  /* Halo signature derrière la carte à gratter */
-  .glow-orange {
-    background: radial-gradient(closest-side, rgba(255, 107, 0, 0.55), transparent);
-  }
-  /* Chiffres tabulaires (countdown / scores) */
   .tnum {
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
   }
-  /* Voile de bruit anti-banding sur les grands dégradés */
-  .noise::after {
+  .pause-marquee:hover [data-marquee] {
+    animation-play-state: paused;
+  }
+  /* Grain filmique pour le hero sombre */
+  .grain::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-marquee] {
+      animation: none !important;
+    }
   }
 }

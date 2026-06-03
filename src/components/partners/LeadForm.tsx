@@ -36,11 +36,11 @@ export function LeadForm() {
   };
 
   const field =
-    "w-full rounded-xl bg-white/5 px-4 py-3 text-paper placeholder:text-mist/60 ring-1 ring-white/10 focus:ring-blue-300";
+    "w-full rounded-xl bg-cloud px-4 py-3 text-ink-900 ring-1 ring-line focus:outline-none focus:ring-2 focus:ring-blue-600";
 
   if (status === "success") {
     return (
-      <p className="rounded-[var(--radius-card)] bg-white/5 p-6 text-center ring-1 ring-white/10">
+      <p className="rounded-[var(--radius-card)] bg-blue-50 p-6 text-center font-medium text-ink-900 ring-1 ring-line">
         {t("success")}
       </p>
     );

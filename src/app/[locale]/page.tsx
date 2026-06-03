@@ -3,8 +3,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildAlternates } from "@/lib/alternates";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { WhyItWorks } from "@/components/sections/WhyItWorks";
-import { SummerEvent } from "@/components/sections/SummerEvent";
+import { MatchSchedule } from "@/components/sections/MatchSchedule";
+import { PartnersBand } from "@/components/sections/PartnersBand";
+import { Prizes } from "@/components/sections/Prizes";
+import { Winners } from "@/components/sections/Winners";
+import { FootballNews } from "@/components/sections/FootballNews";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -41,8 +44,11 @@ export default async function HomePage({ params }: Props) {
       <JsonLd data={faqLd} />
       <Hero />
       <HowItWorks />
-      <WhyItWorks />
-      <SummerEvent />
+      <MatchSchedule />
+      <PartnersBand />
+      <Prizes />
+      <Winners />
+      <FootballNews />
       <Faq />
       <FinalCta />
     </>
