@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { StoreBadges } from "@/components/ui/StoreBadges";
 import { ScratchCard } from "@/components/scratch/ScratchCard";
+import { Countdown } from "@/components/sections/Countdown";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -22,6 +23,10 @@ export function Hero() {
 
           <div className="mt-8">
             <StoreBadges />
+          </div>
+
+          <div className="mt-10">
+            <Countdown />
           </div>
         </div>
 

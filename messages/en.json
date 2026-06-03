@@ -18,6 +18,74 @@
       "points": "50 points"
     }
   },
+  "countdown": {
+    "title": "Kick-off is coming",
+    "days": "days",
+    "hours": "h",
+    "minutes": "min",
+    "seconds": "s"
+  },
+  "how": {
+    "title": "The game in 30 seconds",
+    "subtitle": "No football knowledge needed. A rookie can beat an expert.",
+    "steps": [
+      { "title": "Pick 3 matches", "text": "Before kick-off, select your 3 matches of the day." },
+      { "title": "Get the alert", "text": "On every goal in your selection, a notification lands." },
+      { "title": "Scratch your card", "text": "A one-and-a-half second animation, and the suspense builds." },
+      { "title": "Reveal your win", "text": "Points for the leaderboard, or a prize from a partner." }
+    ]
+  },
+  "why": {
+    "title": "Why it's addictive",
+    "items": [
+      { "title": "Surprise reward", "text": "You never know what's under the card. All the thrill, zero risk." },
+      { "title": "Right now", "text": "The scratch hits the instant a goal is scored. Emotion and reward, no delay." },
+      { "title": "Free for all", "text": "No stake, no barrier. Anyone can play and win." },
+      { "title": "Double stakes", "text": "A prize right away, plus the race up the leaderboard over time." },
+      { "title": "The match, better", "text": "One more reason to follow the game, without staring at the screen." },
+      { "title": "Made to share", "text": "Send a win to your friends, and the crew grows on its own." }
+    ]
+  },
+  "summer": {
+    "title": "All summer, football becomes a game",
+    "lead": "The biggest fixtures of summer 2026, with a scratch card on every goal. The more you follow, the more you scratch.",
+    "stats": [
+      { "value": "3", "label": "matches to pick each day" },
+      { "value": "1.5 s", "label": "to scratch and find out" },
+      { "value": "$0", "label": "to play, always" }
+    ],
+    "after": "And it doesn't stop: we then continue across the French, English, Italian, Spanish, German and Belgian leagues."
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "Is Renard des Surfaces really free?",
+        "a": "Yes, completely. No stake, no payment to play. The app is funded by its partners."
+      },
+      {
+        "q": "Is it gambling or sports betting?",
+        "a": "No. Renard des Surfaces is not betting, not predictions, and not gambling. You stake nothing and win no real money: you earn points and prizes offered by brands."
+      },
+      {
+        "q": "How do I win prizes?",
+        "a": "On every goal in your selection, you scratch a card. It can reveal points for the leaderboard or an instant prize from a partner."
+      },
+      {
+        "q": "Do I need to know football?",
+        "a": "Not at all. You pick your matches, the goals do the rest. A beginner can beat a die-hard fan."
+      },
+      {
+        "q": "Which matches can I play on?",
+        "a": "On the biggest fixtures of summer 2026, then on the main European leagues throughout the season."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Ready to turn every goal into a win?",
+    "subtitle": "Download the app, pick your matches, and let the goals decide.",
+    "button": "Download Renard des Surfaces"
+  },
   "footer": {
     "tagline": "The football scratch app that turns every goal into shared emotion.",
     "disclaimer": "Renard des Surfaces is not sports betting, not predictions, and not gambling. No stake, no real-money winnings.",

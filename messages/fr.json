@@ -18,6 +18,74 @@
       "points": "50 points"
     }
   },
+  "countdown": {
+    "title": "Le coup d'envoi approche",
+    "days": "jours",
+    "hours": "h",
+    "minutes": "min",
+    "seconds": "s"
+  },
+  "how": {
+    "title": "Le jeu en 30 secondes",
+    "subtitle": "Aucune connaissance foot requise. Un novice peut battre un expert.",
+    "steps": [
+      { "title": "Choisis 3 matchs", "text": "Avant le coup d'envoi, sélectionne tes 3 matchs du jour." },
+      { "title": "Reçois l'alerte", "text": "À chaque but marqué dans ta sélection, une notification arrive." },
+      { "title": "Gratte ta carte", "text": "Une animation d'une seconde et demie, et le suspense monte." },
+      { "title": "Découvre ton gain", "text": "Des points pour le classement, ou un lot offert par un partenaire." }
+    ]
+  },
+  "why": {
+    "title": "Pourquoi on devient accro",
+    "items": [
+      { "title": "Récompense surprise", "text": "Tu ne sais jamais ce qui t'attend sous la carte. Tout le frisson, zéro risque." },
+      { "title": "Dans l'instant", "text": "Le grattage tombe pile au moment du but. L'émotion et la récompense, sans délai." },
+      { "title": "Gratuit pour tous", "text": "Pas de mise, pas de barrière. Tout le monde peut jouer et gagner." },
+      { "title": "Double enjeu", "text": "Un lot tout de suite, et la course au classement sur la durée." },
+      { "title": "Le match en mieux", "text": "Une raison de plus de suivre la rencontre, sans rester scotché à l'écran." },
+      { "title": "Ça se partage", "text": "Un gain envoyé à tes potes, et la bande s'agrandit toute seule." }
+    ]
+  },
+  "summer": {
+    "title": "Tout l'été, le foot devient un jeu",
+    "lead": "Les plus grandes affiches de l'été 2026, et à chaque but une carte à gratter. Plus tu suis, plus tu grattes.",
+    "stats": [
+      { "value": "3", "label": "matchs à choisir par jour" },
+      { "value": "1,5 s", "label": "pour gratter et tout savoir" },
+      { "value": "0 €", "label": "pour jouer, toujours" }
+    ],
+    "after": "Et ça ne s'arrête pas : on continue ensuite sur les championnats français, anglais, italien, espagnol, allemand et belge."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Renard des Surfaces, c'est vraiment gratuit ?",
+        "a": "Oui, totalement. Aucune mise, aucun paiement pour jouer. L'app est financée par ses partenaires."
+      },
+      {
+        "q": "Est-ce un jeu d'argent ou un pari sportif ?",
+        "a": "Non. Renard des Surfaces n'est ni un pari, ni un pronostic, ni un jeu d'argent. Tu ne mises rien et tu ne gagnes pas d'argent réel : tu gagnes des points et des lots offerts par des marques."
+      },
+      {
+        "q": "Comment je gagne des lots ?",
+        "a": "À chaque but marqué dans ta sélection, tu grattes une carte. Elle peut révéler des points pour le classement ou un lot immédiat offert par un partenaire."
+      },
+      {
+        "q": "Faut-il s'y connaître en football ?",
+        "a": "Pas du tout. Tu choisis tes matchs, les buts font le reste. Un débutant peut battre un passionné."
+      },
+      {
+        "q": "Sur quels matchs puis-je jouer ?",
+        "a": "Sur les grandes affiches de l'été 2026, puis sur les principaux championnats européens tout au long de la saison."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Prêt à transformer chaque but en gain ?",
+    "subtitle": "Télécharge l'app, choisis tes matchs, et laisse les buts décider.",
+    "button": "Télécharger Renard des Surfaces"
+  },
   "footer": {
     "tagline": "L'app de grattage football qui transforme chaque but en émotion partagée.",
     "disclaimer": "Renard des Surfaces n'est ni un pari sportif, ni un pronostic, ni un jeu d'argent. Aucune mise, aucun gain en argent réel.",
