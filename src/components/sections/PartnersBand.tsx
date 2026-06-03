@@ -1,10 +1,13 @@
 import { useTranslations } from "next-intl";
 import { Section } from "@/components/ui/Section";
 import { Marquee } from "@/components/ui/Marquee";
+import { ImgFallback } from "@/components/ui/ImgFallback";
+import { partners } from "@/content/home";
 
 export function PartnersBand() {
   const t = useTranslations("partnersBand");
-  const slots = Array.from({ length: 6 });
+  // doublé pour une boucle dense et fluide
+  const items = [...partners, ...partners];
 
   return (
     <Section>
@@ -13,12 +16,18 @@ export function PartnersBand() {
       </p>
       <div className="mt-8">
         <Marquee>
-          {slots.map((_, i) => (
+          {items.map((p, i) => (
             <div
-              key={i}
-              className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-dashed border-line bg-cloud text-xs font-medium text-mist"
+              key={`${p.id}-${i}`}
+              className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-line bg-paper px-6"
             >
-              {t("soon")}
+              <ImgFallback
+                src={p.logo}
+                alt={p.name}
+                className="max-h-10 w-auto object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
+                fallback={p.name}
+                fallbackClassName="font-display text-lg font-bold text-ink-700"
+              />
             </div>
           ))}
         </Marquee>

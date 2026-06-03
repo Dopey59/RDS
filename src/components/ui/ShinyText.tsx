@@ -4,7 +4,10 @@ import { cn } from "@/lib/cn";
 export function ShinyText({ children, className }: { children: string; className?: string }) {
   return (
     <span
-      className={cn("animate-[var(--animate-shine)] bg-clip-text text-transparent", className)}
+      className={cn(
+        "inline-block animate-[var(--animate-shine)] bg-clip-text pb-[0.12em] leading-[1.15] text-transparent",
+        className,
+      )}
       style={{
         backgroundImage:
           "linear-gradient(110deg, var(--color-orange-500) 0%, var(--color-orange-400) 40%, #ffd9bd 50%, var(--color-orange-400) 60%, var(--color-orange-500) 100%)",

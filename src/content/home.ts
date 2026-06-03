@@ -87,6 +87,16 @@ export const showcasePrizes: Record<Locale, ShowcasePrize[]> = {
   ],
 };
 
+export type Partner = { id: string; name: string; logo: string };
+
+// Partenaires confirmés — déposer les logos dans public/brand/partners/
+export const partners: Partner[] = [
+  { id: "boulanger", name: "Boulanger", logo: "/brand/partners/boulanger.png" },
+  { id: "cristaline", name: "Cristaline", logo: "/brand/partners/cristaline.png" },
+  { id: "forumjobs", name: "Forum Jobs", logo: "/brand/partners/forumjobs.png" },
+  { id: "micromania", name: "Micromania", logo: "/brand/partners/micromania.png" },
+];
+
 export function localeKey(locale: string): Locale {
   return locale === "en" ? "en" : "fr";
 }

@@ -63,7 +63,7 @@ export function Hero() {
 
           <motion.h1
             variants={item}
-            className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight md:text-7xl"
+            className="mt-6 font-display text-[2.75rem] font-bold leading-[1.04] tracking-tight md:text-6xl lg:text-7xl"
           >
             {t("title")}
             <br />
