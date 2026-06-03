@@ -5,7 +5,7 @@ import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { MatchSchedule } from "@/components/sections/MatchSchedule";
 import { PartnersBand } from "@/components/sections/PartnersBand";
-import { PrizesShowcase } from "@/components/sections/PrizesShowcase";
+import { PrizeSphere } from "@/components/sections/PrizeSphere";
 import { Winners } from "@/components/sections/Winners";
 import { FootballNews } from "@/components/sections/FootballNews";
 import { Faq } from "@/components/sections/Faq";
@@ -46,7 +46,7 @@ export default async function HomePage({ params }: Props) {
       <HowItWorks />
       <MatchSchedule />
       <PartnersBand />
-      <PrizesShowcase />
+      <PrizeSphere />
       <Winners />
       <FootballNews />
       <Faq />

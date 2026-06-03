@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -33,6 +34,7 @@ export function Header() {
               {l.label}
             </Link>
           ))}
+          <LocaleSwitcher />
           <Button href="/" className="px-5">
             {t("play")}
           </Button>
@@ -66,6 +68,9 @@ export function Header() {
               {l.label}
             </Link>
           ))}
+          <div className="mt-2 px-2">
+            <LocaleSwitcher />
+          </div>
           <Button href="/" className="mt-2">
             {t("play")}
           </Button>
