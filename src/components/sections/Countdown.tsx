@@ -2,18 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { diff } from "@/lib/countdown";
 
 const TARGET = process.env.NEXT_PUBLIC_EVENT_DATE;
-
-function diff(target: number, now: number) {
-  const s = Math.max(0, Math.floor((target - now) / 1000));
-  return {
-    days: Math.floor(s / 86400),
-    hours: Math.floor((s % 86400) / 3600),
-    minutes: Math.floor((s % 3600) / 60),
-    seconds: s % 60,
-  };
-}
 
 export function Countdown() {
   const t = useTranslations("countdown");
