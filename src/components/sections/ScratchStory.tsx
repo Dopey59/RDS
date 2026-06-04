@@ -154,7 +154,13 @@ function StoryScene() {
               className="h-full w-full origin-top bg-orange-500"
             />
           </div>
-          <div className="relative h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]">
+          <motion.div
+            initial={{ scaleX: 0.78, scaleY: 1.12, opacity: 0 }}
+            whileInView={{ scaleX: [0.78, 1.08, 0.96, 1], scaleY: [1.12, 0.9, 1.04, 1], opacity: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], times: [0, 0.4, 0.72, 1] }}
+            className="relative h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]"
+          >
             {/* encoche */}
             <div className="absolute left-1/2 top-3.5 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-[#222]" />
             {/* fond écran */}
@@ -228,7 +234,7 @@ function StoryScene() {
                 {t("results.rank")}
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
