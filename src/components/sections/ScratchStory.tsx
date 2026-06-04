@@ -155,10 +155,13 @@ function StoryScene() {
             />
           </div>
           <motion.div
-            initial={{ scaleX: 0.78, scaleY: 1.12, opacity: 0 }}
-            whileInView={{ scaleX: [0.78, 1.08, 0.96, 1], scaleY: [1.12, 0.9, 1.04, 1], opacity: 1 }}
+            initial={{ rotate: 0, x: 0 }}
+            whileInView={{
+              rotate: [0, -2.5, 2.5, -2, 2, -1.2, 1.2, 0],
+              x: [0, -2, 2, -1.5, 1.5, -0.8, 0.8, 0],
+            }}
             viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], times: [0, 0.4, 0.72, 1] }}
+            transition={{ duration: 0.6, delay: 0.35, ease: "easeInOut" }}
             className="relative h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]"
           >
             {/* encoche */}
