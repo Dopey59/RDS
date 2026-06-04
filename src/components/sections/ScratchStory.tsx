@@ -208,7 +208,7 @@ function StoryScene() {
                   className="relative flex flex-col items-center justify-center gap-1.5 overflow-hidden rounded-[calc(1.4rem-1.5px)] bg-white p-4"
                   style={{ width: CW * 0.7, height: CH * 0.7 }}
                 >
-                  <span className="font-display text-4xl leading-none text-[#03142e]">50 pts</span>
+                  <span className="font-display text-4xl leading-none text-orange-500">50 pts</span>
                   <canvas ref={canvasRef} className="absolute inset-0 rounded-[calc(1.4rem-1.5px)]" />
                 </div>
               </div>
