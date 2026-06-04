@@ -158,7 +158,7 @@ function StoryScene() {
             {/* fond écran */}
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url(/photos/hero.jpg)", filter: "grayscale(.4) brightness(.4)" }}
+              style={{ backgroundImage: "url(/photos/phonebg.jpg)", filter: "grayscale(.4) brightness(.4)" }}
             />
 
             {/* Notification */}

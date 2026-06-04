@@ -4,12 +4,12 @@ import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { news, localeKey } from "@/content/home";
 
-// Une image distincte par carte (évite les doublons).
+// Une image distincte par carte — aucune ne doit être réutilisée ailleurs sur la page.
 const PHOTOS = [
   "/photos/stadium.jpg",
   "/photos/pitch-aerial.jpg",
   "/photos/stadium-lights.jpg",
-  "/photos/hero.jpg",
+  "/photos/news4.jpg",
 ];
 
 export function FootballNews() {
