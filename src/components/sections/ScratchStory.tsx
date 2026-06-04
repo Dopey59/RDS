@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+  useReducedMotion,
+  type MotionValue,
+} from "framer-motion";
 import { useTranslations } from "next-intl";
 import { BallIcon, ArrowUpIcon } from "@/components/ui/icons";
 
@@ -10,6 +17,43 @@ type Step = { index: string; title: string; body: string };
 const CW = 244;
 const CH = 304;
 const BRUSH = 22;
+
+// Serpentins RDS qui jaillissent de derrière le téléphone (rubans SVG ondulés).
+const STREAMERS = [
+  { d: "M300 320 C 250 235, 175 250, 150 165 S 120 80, 78 52", c: "#FF4D0A", w: 9 },
+  { d: "M300 320 C 360 245, 432 268, 470 185 S 512 100, 558 76", c: "#0057FF", w: 8 },
+  { d: "M300 330 C 240 385, 168 378, 140 462 S 132 548, 92 588", c: "#5AB4FF", w: 8 },
+  { d: "M300 330 C 362 385, 444 378, 470 462 S 502 548, 548 588", c: "#F2EDE6", w: 7 },
+  { d: "M300 312 C 296 230, 276 178, 300 96", c: "#FF4D0A", w: 6 },
+];
+
+/** Serpentins ondulés derrière le téléphone, tracés au scroll + léger balancement. */
+function Streamers({ progress }: { progress: MotionValue<number> }) {
+  const draw = useTransform(progress, [0.02, 0.4], [0, 1]);
+  const opacity = useTransform(progress, [0, 0.06, 0.92, 1], [0, 1, 1, 0.55]);
+  return (
+    <motion.svg
+      viewBox="0 0 600 640"
+      className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[120%] w-[150%] -translate-x-1/2 -translate-y-1/2"
+      style={{ opacity }}
+      animate={{ rotate: [0, 1.6, -1.6, 0] }}
+      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      aria-hidden
+    >
+      {STREAMERS.map((s, i) => (
+        <motion.path
+          key={i}
+          d={s.d}
+          stroke={s.c}
+          strokeWidth={s.w}
+          strokeLinecap="round"
+          fill="none"
+          style={{ pathLength: draw }}
+        />
+      ))}
+    </motion.svg>
+  );
+}
 
 /** Sphère 3D — voir PrizeSphere : ici, scroll storytelling du grattage. */
 function StoryScene() {
@@ -150,6 +194,8 @@ function StoryScene() {
 
         {/* DROITE — téléphone */}
         <div className="relative order-1 flex items-center justify-center pb-6 md:order-2 md:pb-0">
+          {/* Serpentins RDS — derrière le téléphone */}
+          <Streamers progress={scrollYProgress} />
           {/* Timeline orange — identique au companion (bord gauche de la colonne, 80% de haut) */}
           <div className="pointer-events-none absolute bottom-[10%] left-0 top-[10%] hidden w-0.5 overflow-hidden bg-white/[0.07] md:block">
             <motion.div
@@ -166,7 +212,7 @@ function StoryScene() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeInOut" }}
             onViewportEnter={() => setTimeout(() => setEntered(true), 400)}
-            className="relative h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]"
+            className="relative z-10 h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]"
           >
             {/* encoche */}
             <div className="absolute left-1/2 top-3.5 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-[#222]" />
