@@ -36,9 +36,11 @@ export function Hero() {
         fill
         priority
         sizes="100vw"
-        className="absolute inset-0 -z-20 object-cover opacity-[0.22]"
+        className="absolute inset-0 -z-20 object-cover opacity-45 contrast-125 saturate-125"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink-900/70 via-ink-900/85 to-ink-900" />
+      {/* Voiles de contraste : fait ressortir texte + illustrations */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-900 via-ink-900/80 to-ink-900/55" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-900 via-ink-900/40 to-ink-900/70" />
       {/* Aurores animées */}
       <div
         className="absolute -right-32 -top-40 -z-10 h-[40rem] w-[40rem] animate-[var(--animate-float)] rounded-full blur-3xl"
@@ -63,11 +65,11 @@ export function Hero() {
 
           <motion.h1
             variants={item}
-            className="mt-6 font-display text-[2.75rem] font-bold leading-[1.04] tracking-tight md:text-6xl lg:text-7xl"
+            className="mt-6 font-display text-[2.75rem] font-bold leading-[1.04] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.45)] md:text-6xl lg:text-7xl"
           >
             {t("title")}
             <br />
-            <ShinyText>{t("titleAccent")}</ShinyText>
+            <ShinyText tone="white">{t("titleAccent")}</ShinyText>
           </motion.h1>
 
           <motion.p variants={item} className="mt-6 max-w-md text-lg text-white/70">
