@@ -31,11 +31,19 @@ function Orbiting({
 }) {
   const x = useTransform(rot, (r) => radius * Math.sin(base + r));
   const z = useTransform(rot, (r) => radius * Math.cos(base + r));
-  const opacity = useTransform(rot, (r) => 0.35 + 0.65 * (Math.cos(base + r) * 0.5 + 0.5));
+  // depth : 0 = tout au fond, 1 = au premier plan
+  const depth = useTransform(rot, (r) => Math.cos(base + r) * 0.5 + 0.5);
+  // Le lot devant prend plus de place (1.18), ceux derrière rétrécissent (0.5)
+  const scale = useTransform(depth, (d) => 0.5 + 0.68 * d);
+  const opacity = useTransform(depth, (d) => 0.18 + 0.82 * d);
+  // Flou de profondeur de champ sur les lots reculés
+  const filter = useTransform(depth, (d) => `blur(${(1 - d) * 3.5}px)`);
+  // Le lot avant passe au-dessus des autres
+  const zIndex = useTransform(depth, (d) => Math.round(d * 100));
 
   return (
     <motion.div
-      style={{ x, z, opacity }}
+      style={{ x, z, scale, opacity, filter, zIndex }}
       className="absolute left-1/2 top-1/2 -ml-[5.5rem] -mt-[5.5rem] h-44 w-44 md:-ml-28 md:-mt-28 md:h-56 md:w-56"
     >
       <Image
@@ -88,11 +96,6 @@ function SphereScene() {
               className="relative mx-auto h-72 w-full max-w-3xl md:h-80"
               style={{ transformStyle: "preserve-3d" }}
             >
-              <div
-                className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
-                style={{ background: "radial-gradient(closest-side, rgba(255,107,0,.22), transparent)" }}
-                aria-hidden
-              />
               {prizes.map((p, i) => (
                 <Orbiting key={p.id} prize={p} base={i * step} rot={rot} radius={radius} />
               ))}

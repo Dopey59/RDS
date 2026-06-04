@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RDS — Section Lots</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF4D0A;
+  --blue:#0057FF;
+  --blue-l:#5AB4FF;
+  --ink:#222;
+  --cream:#F2EDE6;
+}
+body{font-family:'Inter',sans-serif;background:#222;color:var(--cream);overflow-x:hidden}
+
+/* ══════════════════════════════════════
+   SECTION LOTS
+══════════════════════════════════════ */
+.lots{
+  position:relative;
+  min-height:100vh;
+  padding:6rem 2.5rem 5rem;
+  /* léger halo orange dans le coin pour la profondeur */
+  background:
+    radial-gradient(ellipse 50% 40% at 85% 8%, rgba(255,77,10,.10), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 5% 95%, rgba(0,87,255,.08), transparent 60%),
+    #222;
+}
+
+/* ─── EN-TÊTE ─── */
+.lots-head{
+  max-width:1200px;margin:0 auto 3.5rem;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+  flex-wrap:wrap;
+}
+.head-left{max-width:560px}
+.eyebrow{
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:1.25rem;
+}
+.eyebrow::before{content:'';width:24px;height:2px;background:var(--orange)}
+.lots-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(2.8rem,5vw,4.5rem);text-transform:uppercase;
+  line-height:.92;letter-spacing:-.01em;color:var(--cream);
+  margin-bottom:1rem;
+}
+.lots-title span{color:var(--orange)}
+.lots-sub{
+  font-size:.95rem;font-weight:300;line-height:1.6;
+  color:rgba(242,237,230,.5);max-width:440px;
+}
+.head-note{
+  flex-shrink:0;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.6rem 1.1rem;border-radius:99px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  font-size:.72rem;font-weight:500;color:rgba(242,237,230,.7);
+  backdrop-filter:blur(10px);
+}
+.head-note b{color:var(--orange);font-weight:700}
+
+/* ─── GRILLE DES LOTS ─── */
+.lots-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:230px;
+  gap:1.1rem;
+}
+
+/* Carte de lot — glassmorphism */
+.lot{
+  position:relative;
+  border-radius:1.25rem;
+  overflow:hidden;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(255,255,255,.1);
+  padding:1.4rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.22,1,.36,1), border-color .35s, background .35s;
+}
+.lot:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,77,10,.4);
+  background:rgba(255,255,255,.08);
+}
+/* halo qui apparait au hover */
+.lot::after{
+  content:'';position:absolute;inset:0;border-radius:1.25rem;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 70% 0%, rgba(255,77,10,.18), transparent 70%);
+  opacity:0;transition:opacity .35s;
+}
+.lot:hover::after{opacity:1}
+
+/* Carte vedette (grande, 2x2) */
+.lot.featured{grid-column:span 2;grid-row:span 2}
+
+.lot-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.lot-partner{
+  font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(242,237,230,.4);
+  display:flex;align-items:center;gap:.4rem;
+}
+.lot-partner .dot{width:5px;height:5px;border-radius:50%;background:var(--blue-l)}
+.lot-tag{
+  font-size:.5rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:.2rem .5rem;border-radius:99px;
+  background:rgba(255,77,10,.15);color:var(--orange);border:1px solid rgba(255,77,10,.25);
+}
+
+.lot-visual{
+  position:relative;z-index:2;
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-size:3.2rem;
+}
+.lot.featured .lot-visual{font-size:6rem}
+
+.lot-bottom{position:relative;z-index:2}
+.lot-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:1.4rem;text-transform:uppercase;letter-spacing:-.01em;line-height:1;
+  color:var(--cream);margin-bottom:.3rem;
+}
+.lot.featured .lot-name{font-size:2.4rem}
+.lot-value{font-size:.75rem;font-weight:600;color:var(--blue-l)}
+.lot.featured .lot-value{font-size:.95rem}
+
+/* CTA qui apparait au hover */
+.lot-cta{
+  margin-top:.9rem;
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.68rem;font-weight:700;color:var(--orange);
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s, transform .3s;
+}
+.lot:hover .lot-cta{opacity:1;transform:translateY(0)}
+.lot-cta svg{width:13px;height:13px}
+
+/* ─── BANDEAU PARTENAIRES ─── */
+.lots-foot{
+  max-width:1200px;margin:3rem auto 0;
+  display:flex;align-items:center;justify-content:center;gap:2.5rem;
+  flex-wrap:wrap;
+  padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);
+}
+.foot-label{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.35)}
+.partner-logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:1.1rem;letter-spacing:.02em;
+  color:rgba(242,237,230,.55);
+  transition:color .2s;cursor:pointer;
+}
+.partner-logo:hover{color:var(--cream)}
+
+/* ══════════════════════════════════════
+   MOBILE FIRST
+══════════════════════════════════════ */
+@media (max-width:768px){
+  .lots{padding:4rem 1.25rem 3.5rem}
+  .lots-head{flex-direction:column;align-items:flex-start;gap:1.25rem;margin-bottom:2.5rem}
+  .lots-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px;gap:.75rem}
+  .lot.featured{grid-column:span 2;grid-row:span 1;flex-direction:row;align-items:center;gap:1rem}
+  .lot.featured .lot-visual{font-size:3.5rem;flex:0 0 auto}
+  .lot.featured .lot-name{font-size:1.6rem}
+  /* CTA toujours visible sur mobile (pas de hover) */
+  .lot-cta{opacity:1;transform:none}
+  .lots-foot{gap:1.5rem}
+}
+@media (max-width:420px){
+  .lots-grid{grid-template-columns:1fr;grid-auto-rows:auto}
+  .lot{min-height:160px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<section class="lots">
+
+  <!-- EN-TÊTE -->
+  <div class="lots-head">
+    <div class="head-left">
+      <div class="eyebrow">Les récompenses</div>
+      <h1 class="lots-title">Ce que tu peux <span>gagner</span></h1>
+      <p class="lots-sub">Des lots concrets offerts par nos partenaires, à chaque journée. Pas de mise, pas de tirage : un but suffit.</p>
+    </div>
+    <div class="head-note">🎁 <b>Gratuitement</b> — via le grattage</div>
+  </div>
+
+  <!-- GRILLE -->
+  <div class="lots-grid">
+
+    <!-- Lot vedette -->
+    <div class="lot featured">
+      <div class="lot-top">
+        <span class="lot-partner"><span class="dot"></span>Boulanger</span>
+        <span class="lot-tag">Lot du jour</span>
+      </div>
+      <div class="lot-visual">📺</div>
+      <div class="lot-bottom">
+        <div class="lot-name">TV 4K 55"</div>
+        <div class="lot-value">Valeur 599 € · 1 à gagner aujourd'hui</div>
+        <div class="lot-cta">Gagner maintenant
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lots standards -->
+    <div class="lot">
+      <div class="lot-top"><span class="lot-partner"><span class="dot"></span>Micromania</span></div>
+      <div class="lot-visual">🎮</div>
+      <div class="lot-bottom">
+        <div class="lot-name">Manette Pro</div>
+        <div class="lot-value">Valeur 69 €</div>
+        <div class="lot-cta">Gagner maintenant
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="lot">
+      <div class="lot-top"><span class="lot-partner"><span class="dot"></span>Cristaline</span></div>
+      <div class="lot-visual">🎟️</div>
+      <div class="lot-bottom">
+        <div class="lot-name">Pack VIP</div>
+        <div class="lot-value">Édition limitée</div>
+        <div class="lot-cta">Gagner maintenant
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="lot">
+      <div class="lot-top"><span class="lot-partner"><span class="dot"></span>Boulanger</span></div>
+      <div class="lot-visual">🎧</div>
+      <div class="lot-bottom">
+        <div class="lot-name">Casque audio</div>
+        <div class="lot-value">Valeur 149 €</div>
+        <div class="lot-cta">Gagner maintenant
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="lot">
+      <div class="lot-top">
+        <span class="lot-partner"><span class="dot"></span>RDS</span>
+        <span class="lot-tag">Points</span>
+      </div>
+      <div class="lot-visual">🪙</div>
+      <div class="lot-bottom">
+        <div class="lot-name">+500 pts</div>
+        <div class="lot-value">Pour le classement</div>
+        <div class="lot-cta">Voir le classement
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BANDEAU PARTENAIRES -->
+  <div class="lots-foot">
+    <span class="foot-label">Ils offrent les lots</span>
+    <span class="partner-logo">Boulanger</span>
+    <span class="partner-logo">Cristaline</span>
+    <span class="partner-logo">Micromania</span>
+    <span class="partner-logo">Forum Jobs</span>
+  </div>
+
+</section>
+
+</body>
+</html>

@@ -39,11 +39,30 @@
     "subtitle": "Pick 3 matches. On every goal, you get an alert and scratch your card. Earn points and prizes from our partners. Game on.",
     "ctaAppStore": "App Store",
     "ctaPlayStore": "Google Play",
+    "cardTitle": "Download the app",
+    "free": "Free",
+    "downloadOn": "Download on",
+    "availableOn": "Get it on",
+    "legal": "iOS & Android · Free · 18+",
     "card": {
       "hint": "Scratch to reveal",
       "prizeLabel": "Instant prize",
       "points": "50 points"
     }
+  },
+  "scratch": {
+    "eyebrow": "How it works",
+    "steps": [
+      { "index": "01 — The notification", "title": "A goal.\nAn alert.", "body": "As soon as a goal is scored in a match you picked, your phone buzzes. The card lands instantly." },
+      { "index": "02 — The clock", "title": "3 seconds\nto scratch.", "body": "You have exactly 3 seconds to seize your chance. The faster you are, the more you win." },
+      { "index": "03 — The scratch", "title": "Scratch.\nReveal.", "body": "Swipe across the card. Every move reveals your prize: points, a sponsor reward, or the jackpot." },
+      { "index": "04 — The ranking", "title": "Climb.\nDominate.", "body": "Every scratched card earns you points. The more you play, the higher you climb on the live leaderboard." }
+    ],
+    "notif": { "app": "RENARD", "now": "now", "title": "GOAL! 🇫🇷 France 1–0", "body": "Your card is ready — scratch fast!" },
+    "countdownLabel": "You have",
+    "countdownSub": "seconds to scratch",
+    "scratchHint": "swipe to reveal",
+    "results": { "pts": "+500 pts", "label": "Earned this goal", "rank": "You climb from #124 to #89" }
   },
   "countdown": {
     "title": "Kick-off is coming",

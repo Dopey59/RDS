@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildAlternates } from "@/lib/alternates";
 import { Hero } from "@/components/sections/Hero";
-import { HowItWorks } from "@/components/sections/HowItWorks";
+import { ScratchStory } from "@/components/sections/ScratchStory";
 import { MatchSchedule } from "@/components/sections/MatchSchedule";
 import { PartnersBand } from "@/components/sections/PartnersBand";
 import { PrizeSphere } from "@/components/sections/PrizeSphere";
@@ -43,7 +43,7 @@ export default async function HomePage({ params }: Props) {
       <JsonLd data={webSiteLd()} />
       <JsonLd data={faqLd} />
       <Hero />
-      <HowItWorks />
+      <ScratchStory />
       <MatchSchedule />
       <PartnersBand />
       <PrizeSphere />

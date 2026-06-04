@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { clashDisplay, inter } from "@/lib/fonts";
+import { display, inter } from "@/lib/fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
@@ -38,8 +38,8 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${clashDisplay.variable} ${inter.variable}`}>
-      <body className="min-h-dvh bg-paper text-body">
+    <html lang={locale} className={`${display.variable} ${inter.variable}`}>
+      <body className="min-h-dvh text-body antialiased">
         <NextIntlClientProvider>
           <Header />
           <main>{children}</main>

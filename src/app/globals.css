@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
-/* ---- Design tokens RDS — thème CLAIR (fond blanc, accents dosés) ---- */
+/* ---- Design tokens RDS — charte 2026 SOMBRE (#222, orange électrique, off-white) ---- */
 @theme {
-  --color-paper: #ffffff; /* fond principal      */
-  --color-cloud: #f4f6fb; /* sections/cartes alt */
-  --color-line: #e6e9f0; /* bordures            */
+  /* Le body est plus sombre (#1b1b1b) ; paper = surface de carte légèrement
+     plus claire pour que cartes/panneaux ressortent. cloud = section alternée. */
+  --color-paper: #2a2a2a; /* surfaces / cartes        */
+  --color-cloud: #202020; /* sections alternées       */
+  --color-line: #383840; /* bordures discrètes        */
 
-  --color-ink-900: #0b1b33; /* titres, bandeaux sombres */
-  --color-ink-700: #22304d;
-  --color-body: #3b4658; /* texte courant  */
-  --color-mist: #6b7689; /* texte secondaire */
+  --color-ink-900: #f2ede6; /* titres (off-white chaud) */
+  --color-ink-700: #d8d2c8;
+  --color-body: #b6b1a8; /* texte courant   */
+  --color-mist: #8a857d; /* texte secondaire */
 
-  --color-blue-50: #eaf2fb;
-  --color-blue-300: #4da6ff;
-  --color-blue-600: #0055a4; /* primaire officiel */
-  --color-blue-700: #003e7a;
+  --color-blue-50: #16213a; /* puce bleue sombre */
+  --color-blue-300: #5ab4ff;
+  --color-blue-600: #0057ff; /* primaire officiel 2026 */
+  --color-blue-700: #5ab4ff; /* (éclairci : texte sur fond sombre) */
 
-  --color-orange-400: #ff8a3d;
-  --color-orange-500: #ff6b00; /* accent officiel */
-  --color-orange-600: #e55f00;
+  --color-orange-400: #ff7a3d;
+  --color-orange-500: #ff4d0a; /* accent officiel 2026 */
+  --color-orange-600: #e5460a;
 
-  --radius-card: 1.25rem;
+  --radius-card: 1.1rem;
 
   --animate-marquee: marquee 30s linear infinite;
   --animate-shine: shine 3s linear infinite;
@@ -56,7 +58,7 @@
 @layer base {
   body {
     font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-    background-color: var(--color-paper);
+    background-color: #1b1b1b; /* fond global (plus sombre que les cartes) */
     color: var(--color-body);
     -webkit-font-smoothing: antialiased;
   }
@@ -66,25 +68,34 @@
   .font-display {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
     color: var(--color-ink-900);
-    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 900;
   }
   :focus-visible {
-    outline: 2px solid var(--color-blue-600);
+    outline: 2px solid var(--color-orange-500);
     outline-offset: 3px;
     border-radius: 4px;
   }
 }
 
 @layer utilities {
-  /* Bandeau bleu d'emphase (texte blanc) — façon "section colorée" */
+  /* Bandeau bleu d'emphase (texte blanc) */
   .band-blue {
-    background: linear-gradient(135deg, #0a63b8 0%, #0055a4 45%, #013a72 100%);
+    background: linear-gradient(135deg, #0057ff 0%, #003ec2 45%, #002a85 100%);
   }
-  /* Halo radiant SUBTIL et localisé (hero sur fond blanc) */
-  .hero-glow {
+  /* Carte verre dépoli — réutilisable (cards, ticker) */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  /* Vignette circulaire sombre (hero plein écran) */
+  .vignette {
     background:
-      radial-gradient(680px 420px at 88% -10%, rgba(77, 166, 255, 0.18), transparent 60%),
-      radial-gradient(520px 360px at 0% 0%, rgba(255, 107, 0, 0.08), transparent 60%);
+      radial-gradient(circle at 50% 42%, transparent 18%, rgba(0, 0, 0, 0.45) 48%, rgba(0, 0, 0, 0.78) 75%, rgba(0, 0, 0, 0.88) 100%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.22) 38%, rgba(0, 0, 0, 0.82) 68%, rgba(0, 0, 0, 0.97) 100%);
   }
   .tnum {
     font-variant-numeric: tabular-nums;
@@ -93,14 +104,14 @@
   .pause-marquee:hover [data-marquee] {
     animation-play-state: paused;
   }
-  /* Grain filmique pour le hero sombre */
+  /* Grain filmique */
   .grain::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.06;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   @media (prefers-reduced-motion: reduce) {
     [data-marquee] {

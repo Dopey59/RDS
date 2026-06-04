@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RDS Hero v4 — Épuré · Traits</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:    #03142E;
+  --orange: #FF6B00;
+  --blue-l: #4DA6FF;
+  --line:   rgba(255,255,255,0.12);
+  --dim:    rgba(255,255,255,0.35);
+}
+
+html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--ink); overflow: hidden; }
+
+/* ── PHOTO FOND ── joueur en action, traité N&B, fondu vers la droite */
+.bg-photo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    url('https://images.unsplash.com/photo-1551958219-acbc595d7b01?w=1600&q=80&fit=crop&crop=focalpoint&fp-x=0.55&fp-y=0.3')
+    55% 20% / cover no-repeat;
+  filter: grayscale(1) contrast(1.1);
+  opacity: 0.13;
+}
+
+/* ── LAYOUT ── */
+.page {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 52px 1fr 44px;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.logo {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.logo em { color: var(--orange); font-style: normal; }
+.nav-r {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+}
+.nav-r span { cursor: pointer; transition: color .15s; }
+.nav-r span:hover { color: #fff; }
+
+/* ── BODY ── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1px 480px;
+  overflow: hidden;
+}
+
+/* Trait vertical de séparation */
+.v-line {
+  background: var(--line);
+  align-self: stretch;
+}
+
+/* ── GAUCHE — TEXTE ── */
+.col-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 3.5rem 2rem 2.5rem;
+  position: relative;
+}
+
+/* Index / numéro — style suisse */
+.section-index {
+  position: absolute;
+  top: 2rem;
+  left: 2.5rem;
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,.2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Eyebrow */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+.ey-line { width: 32px; height: 1px; background: var(--blue-l); flex-shrink: 0; }
+.ey-text {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-l);
+}
+
+/* ── HEADLINE — le cœur visuel ── */
+.headline {
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  margin-bottom: 2.5rem;
+}
+.hl-w { /* blanc */
+  display: block;
+  font-size: clamp(4rem, 6.5vw, 6rem);
+  color: #fff;
+}
+.hl-w2 { /* blanc, même taille */
+  display: block;
+  font-size: clamp(4rem, 6.5vw, 6rem);
+  color: rgba(255,255,255,.85);
+}
+.hl-o { /* orange — le seul accent fort */
+  display: block;
+  font-size: clamp(4rem, 6.5vw, 6rem);
+  color: var(--orange);
+}
+
+/* Trait horizontal sous headline */
+.h-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 2rem;
+}
+
+/* Sous-texte */
+.sub {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--dim);
+  max-width: 340px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin-bottom: 2rem;
+}
+
+/* Badges */
+.badges { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem 0.55rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  background: transparent;
+  text-decoration: none;
+}
+.badge:hover { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.04); }
+.badge-top { display: block; font-size: 0.52rem; font-weight: 300; opacity: .4; line-height: 1.2; }
+.badge-bot { display: block; line-height: 1.2; }
+.badge svg { opacity: .55; }
+
+.legal {
+  margin-top: 1.25rem;
+  font-size: 0.56rem;
+  color: rgba(255,255,255,.16);
+  letter-spacing: 0.05em;
+}
+
+/* ── DROITE — CARTE ── */
+.col-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Petit label en haut à droite */
+.card-label {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  font-size: 0.56rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,.2);
+  text-transform: uppercase;
+}
+
+.scratch-frame {
+  border-radius: 1.6rem;
+  background: linear-gradient(150deg, #ff8a3d, #FF6B00 35%, #0055a4 100%);
+  padding: 1.5px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.35), 0 4px 16px rgba(0,0,0,.2);
+}
+.scratch-inner {
+  width: 272px;
+  height: 340px;
+  border-radius: calc(1.6rem - 1.5px);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  overflow: hidden;
+  position: relative;
+  padding: 1.5rem;
+}
+.picon {
+  width: 48px; height: 48px;
+  background: rgba(255,107,0,.08);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.plabel {
+  font-size: 0.56rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: #9ca3b0;
+}
+.pvalue {
+  font-size: 3.25rem; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.04em; line-height: 1;
+}
+.ptag {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: #eaf2fb; color: #0055A4;
+  font-size: 0.64rem; font-weight: 700;
+  padding: 0.28rem 0.7rem; border-radius: 99px;
+}
+canvas {
+  position: absolute; inset: 0;
+  border-radius: calc(1.6rem - 1.5px);
+  touch-action: none; cursor: grab;
+  transition: opacity .5s;
+}
+canvas:active { cursor: grabbing; }
+canvas.done { opacity: 0; pointer-events: none; }
+
+.card-hint {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,.22);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* ── TICKER — ultra épuré ── */
+.ticker {
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.ticker::before,
+.ticker::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.ticker::before { left: 0;  background: linear-gradient(90deg, var(--ink), transparent); }
+.ticker::after  { right: 0; background: linear-gradient(270deg, var(--ink), transparent); }
+
+.t-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: roll 30s linear infinite;
+  width: max-content;
+  padding: 0 1rem;
+}
+@keyframes roll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.t-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 2.5rem;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,.32);
+  letter-spacing: 0.03em;
+  font-weight: 300;
+}
+.t-item strong { color: rgba(255,255,255,.65); font-weight: 500; }
+.t-item .sc { color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; }
+.t-item .dot { color: var(--orange); font-size: 0.45rem; }
+</style>
+</head>
+<body>
+<div class="bg-photo"></div>
+
+<div class="page">
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Renard<em>.</em>app</div>
+    <div class="nav-r">
+      <span>Comment ça marche</span>
+      <span>Partenaires</span>
+      <span>FR · EN</span>
+    </div>
+  </nav>
+
+  <!-- BODY : texte | trait | carte -->
+  <div class="body">
+
+    <div class="col-text">
+      <div class="section-index">01</div>
+
+      <div class="eyebrow">
+        <div class="ey-line"></div>
+        <div class="ey-text">Application mobile football</div>
+      </div>
+
+      <h1 class="headline">
+        <span class="hl-w">Gratte</span>
+        <span class="hl-w2">à chaque</span>
+        <span class="hl-o">but.</span>
+      </h1>
+
+      <div class="h-rule"></div>
+
+      <p class="sub">
+        Choisis tes matchs. Reçois une notification à chaque but.<br>
+        Gratte ta carte. Gagne des lots sponsors. 100 % gratuit.
+      </p>
+
+      <div class="badges">
+        <a class="badge" href="#">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <span class="badge-top">Télécharger sur</span>
+            <span class="badge-bot">App Store</span>
+          </div>
+        </a>
+        <a class="badge" href="#">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+          <div>
+            <span class="badge-top">Disponible sur</span>
+            <span class="badge-bot">Google Play</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="legal">Ni pari · Ni pronostic · Ni jeu d'argent · 18+ · Gratuit</div>
+    </div>
+
+    <div class="v-line"></div>
+
+    <div class="col-card">
+      <div class="card-label">Carte à gratter</div>
+      <div class="scratch-frame">
+        <div class="scratch-inner">
+          <div class="picon">🪙</div>
+          <div class="plabel">Vos points</div>
+          <div class="pvalue">500 pts</div>
+          <div class="ptag">⚽ Un but = une carte</div>
+        </div>
+        <canvas id="c"></canvas>
+      </div>
+      <div class="card-hint">Gratte pour révéler</div>
+    </div>
+
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="t-track">
+      <div class="t-item"><span class="dot">●</span> 🇫🇷 <strong>France – Espagne</strong> 🇪🇸 <span class="sc">2–1</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇩🇪 <strong>Allemagne – Portugal</strong> 🇵🇹 <span class="sc">0–0</span></div>
+      <div class="t-item"><span class="dot">●</span> 🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Angleterre – Italie</strong> 🇮🇹 <span class="sc">1–2</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇧🇷 <strong>Brésil – Argentine</strong> 🇦🇷 <span class="sc">0–1</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇳🇱 <strong>Pays-Bas – Belgique</strong> 🇧🇪 <span class="sc">3–1</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇫🇷 <strong>France – Espagne</strong> 🇪🇸 <span class="sc">2–1</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇩🇪 <strong>Allemagne – Portugal</strong> 🇵🇹 <span class="sc">0–0</span></div>
+      <div class="t-item"><span class="dot">●</span> 🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Angleterre – Italie</strong> 🇮🇹 <span class="sc">1–2</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇧🇷 <strong>Brésil – Argentine</strong> 🇦🇷 <span class="sc">0–1</span></div>
+      <div class="t-item"><span class="dot">●</span> 🇳🇱 <strong>Pays-Bas – Belgique</strong> 🇧🇪 <span class="sc">3–1</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const W=272,H=340,BRUSH=26,THRESH=0.52;
+const cv=document.getElementById('c');
+const dpr=Math.min(devicePixelRatio||1,2);
+cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
+const ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);
+(function(){
+  ctx.globalCompositeOperation='source-over';
+  const g=ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#0e6fd6'); g.addColorStop(.55,'#0055a4'); g.addColorStop(1,'#013a72');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  const r=ctx.createRadialGradient(W*.3,H*.25,8,W*.3,H*.25,W*.9);
+  r.addColorStop(0,'rgba(255,255,255,.2)'); r.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=r; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(255,255,255,.07)';
+  ctx.beginPath(); ctx.moveTo(-40,H); ctx.lineTo(W*.45,H); ctx.lineTo(W*.75,0); ctx.lineTo(W*.3,0); ctx.closePath(); ctx.fill();
+  [[38,75,2],[218,115,1.5],[52,268,1.5],[212,295,2]].forEach(([x,y,r2])=>{
+    ctx.fillStyle='rgba(255,255,255,.6)'; ctx.beginPath(); ctx.arc(x,y,r2,0,Math.PI*2); ctx.fill();
+  });
+  ctx.textAlign='center';
+  ctx.fillStyle='rgba(255,255,255,.9)';
+  ctx.font='700 28px Inter,sans-serif'; ctx.fillText('GRATTE',W/2,H/2-4);
+  ctx.fillStyle='rgba(255,255,255,.5)';
+  ctx.font='300 11px Inter,sans-serif'; ctx.fillText('glisse pour révéler',W/2,H/2+18);
+})();
+let drag=false,revealed=false,moves=0;
+function erase(x,y){ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(x,y,BRUSH,0,Math.PI*2);ctx.fill();}
+function pos(e){const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*W,y:(e.clientY-r.top)/r.height*H};}
+function check(){if(revealed)return;const d=ctx.getImageData(0,0,W*dpr,H*dpr).data;let c=0;for(let i=3;i<d.length;i+=32)if(d[i]===0)c++;if(c/(d.length/32)>THRESH){revealed=true;cv.classList.add('done');}}
+cv.addEventListener('pointerdown',e=>{drag=true;cv.setPointerCapture(e.pointerId);const p=pos(e);erase(p.x,p.y);});
+cv.addEventListener('pointermove',e=>{if(!drag)return;const p=pos(e);erase(p.x,p.y);if(++moves%5===0)check();});
+window.addEventListener('pointerup',()=>drag=false);
+</script>
+</body>
+</html>

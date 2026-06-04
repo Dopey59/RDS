@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RDS — Directions créatives</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0d0f14;
+    color: #fff;
+    min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .header h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  .header p {
+    color: #999;
+    font-size: 0.95rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+    position: relative;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card.selected {
+    border-color: #fff;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.15);
+  }
+  .selected-badge {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #fff;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 99px;
+    z-index: 10;
+  }
+  .card.selected .selected-badge { display: block; }
+
+  /* ======================== DIRECTION A — PREDATOR DARK ======================== */
+  .card-a .hero {
+    background: #050A14;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+  }
+  .card-a .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(600px 400px at 80% -20%, rgba(255,85,0,0.3), transparent 60%),
+      radial-gradient(400px 300px at -10% 100%, rgba(0,212,255,0.2), transparent 60%);
+  }
+  .card-a .grid-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .card-a .label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #FF5500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .card-a .label::before {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: #FF5500;
+  }
+  .card-a .headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .card-a .headline .accent { color: #FF5500; }
+  .card-a .headline .ice { color: #00D4FF; }
+  .card-a .sub {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    position: relative;
+  }
+  .card-a .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    background: #FF5500;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.25rem;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  /* ======================== DIRECTION B — ELECTRIC FOX ======================== */
+  .card-b .hero {
+    background: #061230;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+  }
+  .card-b .slash {
+    position: absolute;
+    top: -60px;
+    right: -40px;
+    width: 280px;
+    height: 400px;
+    background: linear-gradient(135deg, #FF6B00 0%, #FF3D00 100%);
+    transform: rotate(15deg);
+    opacity: 0.12;
+  }
+  .card-b .slash2 {
+    position: absolute;
+    top: 30px;
+    right: -20px;
+    width: 160px;
+    height: 300px;
+    background: #A8FF00;
+    transform: rotate(15deg);
+    opacity: 0.08;
+  }
+  .card-b .label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #A8FF00;
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card-b .tag {
+    background: rgba(168,255,0,0.15);
+    border: 1px solid rgba(168,255,0,0.3);
+    color: #A8FF00;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .card-b .headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    position: relative;
+  }
+  .card-b .headline .line1 { color: #fff; }
+  .card-b .headline .line2 {
+    -webkit-text-stroke: 1.5px #FF6B00;
+    color: transparent;
+  }
+  .card-b .headline .line3 { color: #A8FF00; }
+  .card-b .sub {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 1rem;
+    position: relative;
+  }
+  .card-b .pill {
+    display: inline-block;
+    margin-top: 1.25rem;
+    background: rgba(168,255,0,0.12);
+    border: 1px solid rgba(168,255,0,0.4);
+    color: #A8FF00;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+    position: relative;
+  }
+
+  /* ======================== DIRECTION C — STUDIO GOLD ======================== */
+  .card-c .hero {
+    background: #F5F0E8;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+  }
+  .card-c .bg-number {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 11rem;
+    font-weight: 900;
+    color: rgba(0,43,92,0.04);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    user-select: none;
+  }
+  .card-c .eyebrow {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C8A85A;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+  }
+  .card-c .eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: #C8A85A;
+  }
+  .card-c .headline {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #002B5C;
+    position: relative;
+  }
+  .card-c .headline em {
+    font-style: italic;
+    color: #C8A85A;
+  }
+  .card-c .sub {
+    font-size: 0.82rem;
+    color: #666;
+    margin-top: 1rem;
+    line-height: 1.5;
+    position: relative;
+    max-width: 260px;
+  }
+  .card-c .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    background: #002B5C;
+    color: #C8A85A;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.25rem;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  /* ======================== META / PALETTE / INFO ======================== */
+  .card-info {
+    background: #111318;
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  .card-a .card-info { background: #080C14; }
+  .card-b .card-info { background: #050D20; }
+  .card-c .card-info { background: #EDE8DF; }
+
+  .card-name {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .card-a .card-name { color: rgba(255,255,255,0.4); }
+  .card-b .card-name { color: rgba(255,255,255,0.4); }
+  .card-c .card-name { color: rgba(0,0,0,0.35); }
+
+  .palette {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+  .card-c .swatch { border-color: rgba(0,0,0,0.1); }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag-item {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+  }
+  .card-a .tag-item { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); }
+  .card-b .tag-item { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); }
+  .card-c .tag-item { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.5); }
+
+  .inspo {
+    font-size: 0.67rem;
+    margin-top: 0.75rem;
+    opacity: 0.5;
+  }
+  .card-a .inspo { color: #fff; }
+  .card-b .inspo { color: #fff; }
+  .card-c .inspo { color: #000; }
+  .inspo span { font-weight: 600; }
+
+  .footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: #444;
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>RDS — Direction créative</h1>
+  <p>Choisis la direction qui te parle. Clique pour sélectionner.</p>
+</div>
+
+<div class="cards">
+
+  <!-- ===== A : PREDATOR DARK ===== -->
+  <div class="card card-a" data-choice="a" onclick="toggleSelect(this)">
+    <div class="selected-badge">✓ Sélectionné</div>
+    <div class="hero">
+      <div class="grid-lines"></div>
+      <div class="label">Renard des Surfaces</div>
+      <div class="headline">
+        <div>GRATTE</div>
+        <div><span class="accent">GAGNE</span></div>
+        <div><span class="ice">DOMINE</span></div>
+      </div>
+      <div class="sub">Chaque but = une chance. En direct.</div>
+      <div class="cta">↓ Télécharger</div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">A — Predator Dark</div>
+      <div class="palette">
+        <div class="swatch" style="background:#050A14"></div>
+        <div class="swatch" style="background:#FF5500"></div>
+        <div class="swatch" style="background:#00D4FF"></div>
+        <div class="swatch" style="background:#ffffff"></div>
+        <div class="swatch" style="background:#1a2540"></div>
+      </div>
+      <div class="tags">
+        <span class="tag-item">Ultra sombre</span>
+        <span class="tag-item">Premium</span>
+        <span class="tag-item">Gaming</span>
+        <span class="tag-item">Impact visuel max</span>
+      </div>
+      <div class="inspo">Inspiré de <span>Sorare × Nike × Fanatics</span></div>
+    </div>
+  </div>
+
+  <!-- ===== B : ELECTRIC FOX ===== -->
+  <div class="card card-b" data-choice="b" onclick="toggleSelect(this)">
+    <div class="selected-badge">✓ Sélectionné</div>
+    <div class="hero">
+      <div class="slash"></div>
+      <div class="slash2"></div>
+      <div class="label">
+        <span>Renard des Surfaces</span>
+        <span class="tag">Beta</span>
+      </div>
+      <div class="headline">
+        <div class="line1">CHAQUE</div>
+        <div class="line2">BUT</div>
+        <div class="line3">COMPTE</div>
+      </div>
+      <div class="sub">Gratte. Gagne. Répète.</div>
+      <div class="pill">↓ Disponible sur iOS &amp; Android</div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">B — Electric Fox</div>
+      <div class="palette">
+        <div class="swatch" style="background:#061230"></div>
+        <div class="swatch" style="background:#FF6B00"></div>
+        <div class="swatch" style="background:#A8FF00"></div>
+        <div class="swatch" style="background:#ffffff"></div>
+        <div class="swatch" style="background:#0D2060"></div>
+      </div>
+      <div class="tags">
+        <span class="tag-item">Énergie</span>
+        <span class="tag-item">Pop</span>
+        <span class="tag-item">Graphique</span>
+        <span class="tag-item">Jeune</span>
+      </div>
+      <div class="inspo">Inspiré de <span>DAZN × Supreme × Kylian-era branding</span></div>
+    </div>
+  </div>
+
+  <!-- ===== C : STUDIO GOLD ===== -->
+  <div class="card card-c" data-choice="c" onclick="toggleSelect(this)">
+    <div class="selected-badge" style="color:#fff;background:#002B5C;">✓ Sélectionné</div>
+    <div class="hero">
+      <div class="bg-number">RDS</div>
+      <div class="eyebrow">Renard des Surfaces</div>
+      <div class="headline">
+        Le foot,<br><em>autrement</em><br>récompensé.
+      </div>
+      <div class="sub">Choisissez vos matchs. Grattez à chaque but. Gagnez des lots vrais.</div>
+      <div class="cta">↓ Télécharger l'app</div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">C — Studio Gold</div>
+      <div class="palette">
+        <div class="swatch" style="background:#F5F0E8;border-color:rgba(0,0,0,0.12)"></div>
+        <div class="swatch" style="background:#002B5C;border-color:rgba(0,0,0,0.12)"></div>
+        <div class="swatch" style="background:#C8A85A;border-color:rgba(0,0,0,0.12)"></div>
+        <div class="swatch" style="background:#FF6B00;border-color:rgba(0,0,0,0.12)"></div>
+        <div class="swatch" style="background:#111;border-color:rgba(0,0,0,0.12)"></div>
+      </div>
+      <div class="tags">
+        <span class="tag-item">Éditorial</span>
+        <span class="tag-item">Luxe</span>
+        <span class="tag-item">Sophistiqué</span>
+        <span class="tag-item">B2B-friendly</span>
+      </div>
+      <div class="inspo">Inspiré de <span>The Athletic × Highsnobiety × SB Nation</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Clique sur une direction pour la sélectionner, puis dis-moi dans le terminal.<br>Tu peux aussi mélanger des éléments de plusieurs directions.
+</div>
+
+<script>
+function toggleSelect(el) {
+  const wasSelected = el.classList.contains('selected');
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  if (!wasSelected) el.classList.add('selected');
+}
+</script>
+</body>
+</html>

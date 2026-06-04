@@ -39,11 +39,30 @@
     "subtitle": "Choisis 3 matchs. À chaque but, tu reçois une alerte et tu grattes ta carte. Des points, des lots offerts par nos partenaires. À toi de jouer.",
     "ctaAppStore": "App Store",
     "ctaPlayStore": "Google Play",
+    "cardTitle": "Télécharge l'app",
+    "free": "Gratuit",
+    "downloadOn": "Télécharger sur",
+    "availableOn": "Disponible sur",
+    "legal": "iOS & Android · Gratuit · 18+",
     "card": {
       "hint": "Gratte pour révéler",
       "prizeLabel": "Lot immédiat",
       "points": "50 points"
     }
+  },
+  "scratch": {
+    "eyebrow": "Comment ça marche",
+    "steps": [
+      { "index": "01 — La notification", "title": "Un but.\nUne alerte.", "body": "Dès qu'un but est marqué dans un match que tu as choisi, ton téléphone vibre. La carte arrive instantanément." },
+      { "index": "02 — Le chrono", "title": "3 secondes\npour gratter.", "body": "Tu as exactement 3 secondes pour saisir ta chance. Plus tu es rapide, plus tu maximises tes gains." },
+      { "index": "03 — Le grattage", "title": "Gratte.\nRévèle.", "body": "Glisse le doigt sur la carte. Chaque mouvement révèle ton gain : des points, un lot sponsor, ou le jackpot." },
+      { "index": "04 — Le classement", "title": "Monte.\nDomine.", "body": "Chaque carte grattée t'apporte des points. Plus tu joues, plus tu grimpes dans le classement live." }
+    ],
+    "notif": { "app": "RENARD", "now": "maintenant", "title": "BUT ! 🇫🇷 France 1–0", "body": "Ta carte est prête — gratte vite !" },
+    "countdownLabel": "Tu as",
+    "countdownSub": "secondes pour gratter",
+    "scratchHint": "glisse pour révéler",
+    "results": { "pts": "+500 pts", "label": "Gagnés ce but", "rank": "Tu passes de #124 à #89" }
   },
   "countdown": {
     "title": "Le coup d'envoi approche",

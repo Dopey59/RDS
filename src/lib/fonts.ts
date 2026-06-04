@@ -1,14 +1,9 @@
-import localFont from "next/font/local";
-import { Inter } from "next/font/google";
+import { Inter, Barlow_Condensed } from "next/font/google";
 
-// Titres — Clash Display (self-hosted, remplace Cunia)
-export const clashDisplay = localFont({
-  src: [
-    { path: "../assets/fonts/ClashDisplay-400.woff2", weight: "400", style: "normal" },
-    { path: "../assets/fonts/ClashDisplay-500.woff2", weight: "500", style: "normal" },
-    { path: "../assets/fonts/ClashDisplay-600.woff2", weight: "600", style: "normal" },
-    { path: "../assets/fonts/ClashDisplay-700.woff2", weight: "700", style: "normal" },
-  ],
+// Titres — Barlow Condensed (charte 2026 : condensed ultra-bold, majuscules)
+export const display = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
   variable: "--font-display",
   display: "swap",
 });
