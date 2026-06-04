@@ -41,32 +41,47 @@ const STREAMERS = Array.from({ length: 11 }).map((_, i) => {
   };
 });
 
-/** Serpentins ondulés : tracés au scroll, dérivent vers l'extérieur puis disparaissent (fade out). */
+/** Serpentins : tracés au scroll, ondulent en continu (filtre de déplacement),
+ *  dérivent vers l'extérieur et disparaissent en fade out. */
 function Streamers({ progress }: { progress: MotionValue<number> }) {
-  const draw = useTransform(progress, [0.02, 0.28], [0, 1]);
-  // S'éloignent progressivement (scale depuis le centre) puis fade out en fin de section
-  const scale = useTransform(progress, [0.05, 1], [0.6, 1.9]);
-  const opacity = useTransform(progress, [0, 0.1, 0.55, 0.95], [0, 1, 1, 0]);
+  const draw = useTransform(progress, [0.02, 0.3], [0, 1]);
+  // Dérive progressive vers l'extérieur + fade out en fin de section
+  const scale = useTransform(progress, [0.05, 1], [0.7, 1.55]);
+  const opacity = useTransform(progress, [0, 0.1, 0.6, 0.95], [0, 1, 1, 0]);
   return (
     <motion.svg
       viewBox="0 0 600 640"
       className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[130%] w-[160%] -translate-x-1/2 -translate-y-1/2"
       style={{ opacity, scale }}
-      animate={{ rotate: [0, 1.6, -1.6, 0] }}
-      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       aria-hidden
     >
-      {STREAMERS.map((s, i) => (
-        <motion.path
-          key={i}
-          d={s.d}
-          stroke={s.c}
-          strokeWidth={s.w}
-          strokeLinecap="round"
-          fill="none"
-          style={{ pathLength: draw }}
-        />
-      ))}
+      <defs>
+        {/* Ondulation continue : on anime le champ de bruit -> les rubans serpentent */}
+        <filter id="streamerWobble" x="-25%" y="-25%" width="150%" height="150%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.011 0.02" numOctaves="2" seed="7" result="noise">
+            <animate
+              attributeName="baseFrequency"
+              dur="6s"
+              values="0.011 0.02;0.018 0.03;0.011 0.02"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+      <g filter="url(#streamerWobble)">
+        {STREAMERS.map((s, i) => (
+          <motion.path
+            key={i}
+            d={s.d}
+            stroke={s.c}
+            strokeWidth={s.w}
+            strokeLinecap="round"
+            fill="none"
+            style={{ pathLength: draw }}
+          />
+        ))}
+      </g>
     </motion.svg>
   );
 }
