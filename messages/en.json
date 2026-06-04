@@ -58,7 +58,7 @@
       { "index": "03 — The scratch", "title": "Scratch.\nReveal.", "body": "Swipe across the card. Every move reveals your prize: points, a sponsor reward, or the jackpot." },
       { "index": "04 — The ranking", "title": "Climb.\nDominate.", "body": "Every scratched card earns you points. The more you play, the higher you climb on the live leaderboard." }
     ],
-    "notif": { "app": "RENARD", "now": "now", "title": "GOAL! 🇫🇷 France 1–0", "body": "Your card is ready — scratch fast!" },
+    "notif": { "app": "RENARD", "now": "now", "title": "GOAL! France 1–0", "body": "Your card is ready — scratch fast!" },
     "countdownLabel": "You have",
     "countdownSub": "seconds to scratch",
     "scratchHint": "swipe to reveal",

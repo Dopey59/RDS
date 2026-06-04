@@ -58,7 +58,7 @@
       { "index": "03 — Le grattage", "title": "Gratte.\nRévèle.", "body": "Glisse le doigt sur la carte. Chaque mouvement révèle ton gain : des points, un lot sponsor, ou le jackpot." },
       { "index": "04 — Le classement", "title": "Monte.\nDomine.", "body": "Chaque carte grattée t'apporte des points. Plus tu joues, plus tu grimpes dans le classement live." }
     ],
-    "notif": { "app": "RENARD", "now": "maintenant", "title": "BUT ! 🇫🇷 France 1–0", "body": "Ta carte est prête — gratte vite !" },
+    "notif": { "app": "RENARD", "now": "maintenant", "title": "BUT ! France 1–0", "body": "Ta carte est prête — gratte vite !" },
     "countdownLabel": "Tu as",
     "countdownSub": "secondes pour gratter",
     "scratchHint": "glisse pour révéler",

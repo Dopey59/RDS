@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { BallIcon, ArrowUpIcon } from "@/components/ui/icons";
 
 type Step = { index: string; title: string; body: string };
 
@@ -177,8 +178,8 @@ function StoryScene() {
               className="absolute inset-x-2.5 top-7 z-[5] flex items-start gap-2.5 rounded-2xl border border-white/12 bg-[#28282a]/75 p-3 backdrop-blur-xl transition-all duration-500"
               style={{ transform: notifShown ? "translateY(0)" : "translateY(-90px)", opacity: notifShown ? 1 : 0 }}
             >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-orange-500 text-lg">
-                ⚽
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-orange-500">
+                <BallIcon className="h-5 w-5 text-white" />
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
@@ -233,7 +234,7 @@ function StoryScene() {
                 {t("results.label")}
               </span>
               <span className="flex items-center gap-1.5 rounded-full border border-white/12 bg-white/8 px-3.5 py-1.5 text-[0.7rem] font-semibold text-white">
-                <span className="text-emerald-400">↑</span>
+                <ArrowUpIcon className="h-3.5 w-3.5 text-emerald-400" />
                 {t("results.rank")}
               </span>
             </div>

@@ -13,16 +13,16 @@ export type WinnerRow = { rank: number; pseudo: string; points: number };
 
 export const matches: Record<Locale, MatchRow[]> = {
   fr: [
-    { flag: "🏴", league: "Championnat anglais", when: "J34 · Sam. 16:00" },
-    { flag: "🇮🇹", league: "Championnat italien", when: "J33 · Sam. 18:00" },
-    { flag: "🇪🇸", league: "Championnat espagnol", when: "J32 · Dim. 21:00" },
-    { flag: "🇫🇷", league: "Championnat français", when: "J31 · Dim. 17:00" },
+    { flag: "en", league: "Championnat anglais", when: "J34 · Sam. 16:00" },
+    { flag: "it", league: "Championnat italien", when: "J33 · Sam. 18:00" },
+    { flag: "es", league: "Championnat espagnol", when: "J32 · Dim. 21:00" },
+    { flag: "fr", league: "Championnat français", when: "J31 · Dim. 17:00" },
   ],
   en: [
-    { flag: "🏴", league: "English league", when: "MD34 · Sat. 4:00 PM" },
-    { flag: "🇮🇹", league: "Italian league", when: "MD33 · Sat. 6:00 PM" },
-    { flag: "🇪🇸", league: "Spanish league", when: "MD32 · Sun. 9:00 PM" },
-    { flag: "🇫🇷", league: "French league", when: "MD31 · Sun. 5:00 PM" },
+    { flag: "en", league: "English league", when: "MD34 · Sat. 4:00 PM" },
+    { flag: "it", league: "Italian league", when: "MD33 · Sat. 6:00 PM" },
+    { flag: "es", league: "Spanish league", when: "MD32 · Sun. 9:00 PM" },
+    { flag: "fr", league: "French league", when: "MD31 · Sun. 5:00 PM" },
   ],
 };
 

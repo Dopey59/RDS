@@ -14,6 +14,7 @@ import {
 import { useTranslations, useLocale } from "next-intl";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { ArrowDownIcon } from "@/components/ui/icons";
 import { showcasePrizes, localeKey, type ShowcasePrize } from "@/content/home";
 
 const TWO_PI = Math.PI * 2;
@@ -127,8 +128,8 @@ function SphereScene() {
               </motion.div>
             </AnimatePresence>
             <p className="mt-3 text-sm text-mist">{t("note")}</p>
-            <p className="mt-4 animate-bounce text-xs text-mist" aria-hidden>
-              ↓ scroll
+            <p className="mt-4 inline-flex animate-bounce items-center gap-1 text-xs text-mist" aria-hidden>
+              <ArrowDownIcon className="h-3.5 w-3.5" /> scroll
             </p>
           </div>
         </div>

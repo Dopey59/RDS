@@ -14,6 +14,7 @@ import {
 import { useTranslations, useLocale } from "next-intl";
 import { Marquee } from "@/components/ui/Marquee";
 import { StoreBadges } from "@/components/ui/StoreBadges";
+import { Flag } from "@/components/ui/icons";
 import { matches, localeKey } from "@/content/home";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -118,19 +119,24 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Ticker matchs */}
+      {/* Ticker matchs — répété pour remplir la largeur (défilement infini sans coupure) */}
       <div className="glass relative z-10 border-t border-white/10 py-3">
-        <Marquee fade="none">
-          {rows.map((m, i) => (
-            <span key={i} className="flex shrink-0 items-center gap-2 px-6 text-sm text-white/35">
-              <span className="text-[0.45rem] text-orange-500" aria-hidden>
-                ●
+        <Marquee fade="none" durationSec={120}>
+          {Array.from({ length: 4 }).flatMap((_, rep) =>
+            rows.map((m, i) => (
+              <span
+                key={`${rep}-${i}`}
+                className="flex shrink-0 items-center gap-2 px-6 text-sm text-white/35"
+              >
+                <span className="text-[0.45rem] text-orange-500" aria-hidden>
+                  ●
+                </span>
+                <Flag code={m.flag} className="h-3 w-[18px]" />
+                <span className="font-medium text-white/65">{m.league}</span>
+                <span className="tnum text-blue-300">{m.when}</span>
               </span>
-              <span aria-hidden>{m.flag}</span>
-              <span className="font-medium text-white/65">{m.league}</span>
-              <span className="tnum text-blue-300">{m.when}</span>
-            </span>
-          ))}
+            )),
+          )}
         </Marquee>
       </div>
     </section>

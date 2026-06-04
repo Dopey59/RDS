@@ -6,6 +6,8 @@ type Props = {
   className?: string;
   /** Couleur des fondus latéraux selon le fond (clair par défaut). */
   fade?: "paper" | "ink" | "none";
+  /** Durée d'un cycle en secondes (sinon valeur par défaut du token). */
+  durationSec?: number;
 };
 
 const FADE: Record<NonNullable<Props["fade"]>, string> = {
@@ -15,10 +17,14 @@ const FADE: Record<NonNullable<Props["fade"]>, string> = {
 };
 
 /** Défilement horizontal continu (style Magic UI Marquee), pause au survol. */
-export function Marquee({ children, className, fade = "paper" }: Props) {
+export function Marquee({ children, className, fade = "paper", durationSec }: Props) {
   return (
     <div className={cn("pause-marquee group relative overflow-hidden", className)}>
-      <div data-marquee className="flex w-max animate-[var(--animate-marquee)] gap-6">
+      <div
+        data-marquee
+        className="flex w-max animate-[var(--animate-marquee)] gap-6"
+        style={durationSec ? { animationDuration: `${durationSec}s` } : undefined}
+      >
         {children}
         {children}
       </div>

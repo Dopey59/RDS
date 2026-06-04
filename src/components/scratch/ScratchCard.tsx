@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import confetti from "canvas-confetti";
+import { BallIcon } from "@/components/ui/icons";
 
 type Props = {
   hint: string;
@@ -165,8 +166,8 @@ export function ScratchCard({ hint, prizeLabel, prize }: Props) {
               {prizeLabel}
             </span>
             <span className="font-display text-5xl font-bold leading-none text-ink-900">{prize}</span>
-            <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-              ⚽ Un but = une carte
+            <span className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+              <BallIcon className="h-3.5 w-3.5" /> Un but = une carte
             </span>
           </div>
 
