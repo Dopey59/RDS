@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 type Step = { index: string; title: string; body: string };
@@ -144,7 +144,14 @@ function StoryScene() {
         </div>
 
         {/* DROITE — téléphone */}
-        <div className="order-1 flex items-center justify-center pb-6 md:order-2 md:pb-0">
+        <div className="relative order-1 flex items-center justify-center pb-6 md:order-2 md:pb-0">
+          {/* Timeline orange — identique au companion (bord gauche de la colonne, 80% de haut) */}
+          <div className="pointer-events-none absolute bottom-[10%] left-0 top-[10%] hidden w-0.5 overflow-hidden bg-white/[0.07] md:block">
+            <motion.div
+              style={{ scaleY: scrollYProgress }}
+              className="h-full w-full origin-top bg-orange-500"
+            />
+          </div>
           <div className="relative h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]">
             {/* encoche */}
             <div className="absolute left-1/2 top-3.5 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-[#222]" />
@@ -191,13 +198,13 @@ function StoryScene() {
 
             {/* Carte à gratter */}
             <div
-              className="absolute bottom-[70px] left-1/2 z-[6] -translate-x-1/2 transition-all duration-500"
-              style={{ opacity: cardShown ? 1 : 0, transform: `translateX(-50%) scale(${cardShown ? 1 : 0.85})` }}
+              className="absolute inset-x-0 bottom-[58px] z-[6] flex justify-center transition-all duration-500"
+              style={{ opacity: cardShown ? 1 : 0, transform: `scale(${cardShown ? 1 : 0.85})` }}
             >
               <div className="rounded-[1.4rem] bg-gradient-to-br from-orange-400 via-orange-500 to-blue-600 p-[1.5px] shadow-xl">
                 <div
                   className="relative flex flex-col items-center justify-center gap-1.5 overflow-hidden rounded-[calc(1.4rem-1.5px)] bg-white p-4"
-                  style={{ width: CW * 0.75, height: CH * 0.75 }}
+                  style={{ width: CW * 0.7, height: CH * 0.7 }}
                 >
                   <span className="text-lg">🎁</span>
                   <span className="text-[0.52rem] font-bold uppercase tracking-widest text-[#9ca3b0]">

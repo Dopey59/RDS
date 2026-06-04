@@ -19,14 +19,14 @@ export function PartnersBand() {
           {items.map((p, i) => (
             <div
               key={`${p.id}-${i}`}
-              className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-line bg-paper px-6"
+              className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl bg-white px-6 shadow-sm ring-1 ring-white/10"
             >
               <ImgFallback
                 src={p.logo}
                 alt={p.name}
-                className="max-h-10 w-auto object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
+                className="max-h-12 w-auto object-contain transition hover:scale-105"
                 fallback={p.name}
-                fallbackClassName="font-display text-lg font-bold text-ink-700"
+                fallbackClassName="font-display text-lg font-bold text-[#222222]"
               />
             </div>
           ))}
