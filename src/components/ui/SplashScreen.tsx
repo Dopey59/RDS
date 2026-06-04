@@ -7,6 +7,9 @@ const W = 150;
 const H = 198;
 const BRUSH = 16;
 
+// ⚠️ TEST : true = le splash rejoue à chaque chargement. Remettre à false avant la prod.
+const REPLAY_EACH_LOAD = true;
+
 /** Splash d'intro : le logo renard se révèle par grattage, fade in/out, une fois par session. */
 export function SplashScreen() {
   const [show, setShow] = useState(true);
@@ -16,11 +19,13 @@ export function SplashScreen() {
   const skipRef = useRef(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem(KEY)) {
-      setShow(false);
-      return;
+    if (!REPLAY_EACH_LOAD) {
+      if (sessionStorage.getItem(KEY)) {
+        setShow(false);
+        return;
+      }
+      sessionStorage.setItem(KEY, "1");
     }
-    sessionStorage.setItem(KEY, "1");
     document.body.style.overflow = "hidden";
 
     let raf = 0;
