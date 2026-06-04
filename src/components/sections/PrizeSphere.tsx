@@ -65,8 +65,10 @@ export function PrizeSphere() {
 
   const [active, setActive] = useState(0);
   const [radius, setRadius] = useState(260);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const set = () => setRadius(window.innerWidth < 640 ? 150 : 260);
     set();
     window.addEventListener("resize", set);
@@ -79,8 +81,9 @@ export function PrizeSphere() {
 
   const current = prizes[active];
 
-  // Fallback statique (accessibilité / reduced-motion)
-  if (reduce) {
+  // Rendu SSR + premier paint + reduced-motion : grille statique (pas de mismatch
+  // d'hydratation, et contenu indexable). La scène 3D ne monte qu'ensuite, côté client.
+  if (reduce || !mounted) {
     return (
       <Section id="lots" tone="cloud">
         <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
