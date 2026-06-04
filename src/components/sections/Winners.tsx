@@ -26,7 +26,7 @@ export function Winners() {
               {w.rank}
             </span>
             <span className="flex-1 font-semibold text-ink-900">{w.pseudo}</span>
-            <span className="font-display font-bold text-blue-600">
+            <span className="font-display font-bold text-blue-300">
               <NumberTicker value={w.points} className="tnum" />{" "}
               <span className="text-xs font-medium text-mist">{t("points")}</span>
             </span>
