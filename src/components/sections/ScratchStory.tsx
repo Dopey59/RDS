@@ -24,6 +24,8 @@ function StoryScene() {
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start start", "end end"] });
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(3);
+  // La notif pop quand la section entre dans le viewport (pas avant)
+  const [entered, setEntered] = useState(false);
 
   // Peinture de la couche à gratter (foil métallique bleu)
   useEffect(() => {
@@ -112,7 +114,7 @@ function StoryScene() {
     }
   });
 
-  const notifShown = active >= 0;
+  const notifShown = entered;
   const countdownShown = active === 1;
   const cardShown = active >= 2;
   const resultsShown = active === 3;
@@ -163,6 +165,7 @@ function StoryScene() {
             }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeInOut" }}
+            onViewportEnter={() => setTimeout(() => setEntered(true), 400)}
             className="relative h-[480px] w-[240px] overflow-hidden rounded-[2.5rem] border-2 border-white/12 bg-black shadow-[0_40px_80px_rgba(0,0,0,.6)]"
           >
             {/* encoche */}
