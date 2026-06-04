@@ -12,7 +12,7 @@ export function MatchSchedule() {
   const rows = matches[localeKey(useLocale())];
 
   return (
-    <section className="relative isolate overflow-hidden text-white">
+    <section className="relative isolate overflow-hidden bg-paper text-white">
       {/* Bandeau bleu incliné */}
       <div className="band-blue absolute inset-0 -z-10" style={{ clipPath: BAND_CLIP }} aria-hidden />
       {/* Barre orange transversale sur l'arête */}
