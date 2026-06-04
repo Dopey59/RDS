@@ -7,8 +7,8 @@ const W = 150;
 const H = 198;
 const BRUSH = 16;
 
-// ⚠️ TEST : true = le splash rejoue à chaque chargement. Remettre à false avant la prod.
-const REPLAY_EACH_LOAD = true;
+// true = le splash rejoue à chaque chargement (test). false = une fois par session (prod).
+const REPLAY_EACH_LOAD = false;
 
 /** Splash d'intro : le logo renard se révèle par grattage, fade in/out, une fois par session. */
 export function SplashScreen() {
