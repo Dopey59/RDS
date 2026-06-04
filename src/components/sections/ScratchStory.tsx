@@ -173,10 +173,13 @@ function StoryScene() {
               style={{ backgroundImage: "url(/photos/phonebg.jpg)", filter: "grayscale(.4) brightness(.4)" }}
             />
 
-            {/* Notification */}
+            {/* Notification — apparition du bas vers le haut avec léger rebond (pop) */}
             <div
-              className="absolute inset-x-2.5 top-7 z-[5] flex items-start gap-2.5 rounded-2xl border border-white/12 bg-[#28282a]/75 p-3 backdrop-blur-xl transition-all duration-500"
-              style={{ transform: notifShown ? "translateY(0)" : "translateY(-90px)", opacity: notifShown ? 1 : 0 }}
+              className="absolute inset-x-2.5 top-7 z-[5] flex items-start gap-2.5 rounded-2xl border border-white/12 bg-[#28282a]/75 p-3 backdrop-blur-xl transition-all duration-[550ms] [transition-timing-function:cubic-bezier(.34,1.56,.64,1)]"
+              style={{
+                transform: notifShown ? "translateY(0) scale(1)" : "translateY(22px) scale(0.96)",
+                opacity: notifShown ? 1 : 0,
+              }}
             >
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-orange-500">
                 <BallIcon className="h-5 w-5 text-white" />
