@@ -33,24 +33,26 @@ function Orbiting({
   const z = useTransform(rot, (r) => radius * Math.cos(base + r));
   // depth : 0 = tout au fond, 1 = au premier plan
   const depth = useTransform(rot, (r) => Math.cos(base + r) * 0.5 + 0.5);
-  // Le lot devant prend plus de place (1.18), ceux derrière rétrécissent (0.5)
-  const scale = useTransform(depth, (d) => 0.5 + 0.68 * d);
-  const opacity = useTransform(depth, (d) => 0.18 + 0.82 * d);
-  // Flou de profondeur de champ sur les lots reculés
-  const filter = useTransform(depth, (d) => `blur(${(1 - d) * 3.5}px)`);
+  // Le lot de devant domine (≈1.24), les autres sont nettement réduits (≈0.42)
+  const scale = useTransform(depth, (d) => 0.42 + 0.82 * d);
+  const opacity = useTransform(depth, (d) => 0.12 + 0.88 * d);
+  // Flou de profondeur de champ plus marqué sur les lots reculés
+  const filter = useTransform(depth, (d) => `blur(${(1 - d) * 4.5}px)`);
   // Le lot avant passe au-dessus des autres
   const zIndex = useTransform(depth, (d) => Math.round(d * 100));
 
   return (
     <motion.div
       style={{ x, z, scale, opacity, filter, zIndex }}
-      className="absolute left-1/2 top-1/2 -ml-[5.5rem] -mt-[5.5rem] h-44 w-44 md:-ml-28 md:-mt-28 md:h-56 md:w-56"
+      /* Boîte responsive : ~54vw sur mobile (lot de devant ≈ 67vw), fixe sur desktop */
+      className="absolute left-1/2 top-1/2 h-[54vw] w-[54vw] -ml-[27vw] -mt-[27vw] md:h-56 md:w-56 md:-ml-28 md:-mt-28"
     >
       <Image
         src={prize.image}
         alt={prize.name}
-        width={260}
-        height={260}
+        width={600}
+        height={600}
+        sizes="(max-width: 768px) 90vw, 320px"
         className="h-full w-full object-contain drop-shadow-2xl"
       />
     </motion.div>
@@ -69,10 +71,11 @@ function SphereScene() {
   const rot = useTransform(scrollYProgress, [0, 1], [0, TWO_PI]);
 
   const [active, setActive] = useState(0);
-  const [radius, setRadius] = useState(260);
+  const [radius, setRadius] = useState(240);
 
   useEffect(() => {
-    const set = () => setRadius(window.innerWidth < 640 ? 150 : 260);
+    // Rayon resserré sur mobile : les autres lots se rangent derrière le principal.
+    const set = () => setRadius(window.innerWidth < 768 ? 95 : 240);
     set();
     window.addEventListener("resize", set);
     return () => window.removeEventListener("resize", set);
@@ -87,22 +90,27 @@ function SphereScene() {
   return (
     <section id="lots" className="relative bg-cloud">
       <div ref={wrapRef} className="relative h-[320vh]">
-        <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-4">
-          <p className="text-xs font-semibold uppercase tracking-widest text-mist">{t("pick")}</p>
-          <h2 className="mt-2 text-center font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
+        <div className="sticky top-0 flex h-screen flex-col items-center justify-between overflow-hidden px-4 pb-10 pt-20 md:pb-14 md:pt-28">
+          {/* Zone haute : titre */}
+          <div className="shrink-0 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-mist">{t("pick")}</p>
+            <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
+          </div>
 
-          <div className="relative mt-6 w-full" style={{ perspective: "1200px" }}>
-            <div
-              className="relative mx-auto h-72 w-full max-w-3xl md:h-80"
-              style={{ transformStyle: "preserve-3d" }}
-            >
+          {/* Zone centrale : sphère (occupe l'espace dispo, image centrée) */}
+          <div
+            className="relative flex w-full flex-1 items-center justify-center"
+            style={{ perspective: "1200px" }}
+          >
+            <div className="relative h-full w-full max-w-3xl" style={{ transformStyle: "preserve-3d" }}>
               {prizes.map((p, i) => (
                 <Orbiting key={p.id} prize={p} base={i * step} rot={rot} radius={radius} />
               ))}
             </div>
           </div>
 
-          <div className="mt-6 flex flex-col items-center text-center">
+          {/* Zone basse : nom + CTA + note */}
+          <div className="shrink-0 flex flex-col items-center text-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id}
@@ -119,7 +127,7 @@ function SphereScene() {
               </motion.div>
             </AnimatePresence>
             <p className="mt-3 text-sm text-mist">{t("note")}</p>
-            <p className="mt-6 animate-bounce text-xs text-mist md:mt-8" aria-hidden>
+            <p className="mt-4 animate-bounce text-xs text-mist" aria-hidden>
               ↓ scroll
             </p>
           </div>
