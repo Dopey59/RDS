@@ -49,26 +49,21 @@ function Orbiting({
   );
 }
 
-export function PrizeSphere() {
+/** Scène 3D — montée uniquement côté client (le ref de useScroll est donc attaché). */
+function SphereScene() {
   const t = useTranslations("prizes");
   const prizes = showcasePrizes[localeKey(useLocale())];
-  const reduce = useReducedMotion();
   const n = prizes.length;
   const step = TWO_PI / n;
 
   const wrapRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: wrapRef,
-    offset: ["start start", "end end"],
-  });
+  const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start start", "end end"] });
   const rot = useTransform(scrollYProgress, [0, 1], [0, TWO_PI]);
 
   const [active, setActive] = useState(0);
   const [radius, setRadius] = useState(260);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const set = () => setRadius(window.innerWidth < 640 ? 150 : 260);
     set();
     window.addEventListener("resize", set);
@@ -81,31 +76,6 @@ export function PrizeSphere() {
 
   const current = prizes[active];
 
-  // Rendu SSR + premier paint + reduced-motion : grille statique (pas de mismatch
-  // d'hydratation, et contenu indexable). La scène 3D ne monte qu'ensuite, côté client.
-  if (reduce || !mounted) {
-    return (
-      <Section id="lots" tone="cloud">
-        <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
-        <p className="mt-3 max-w-xl text-mist">{t("subtitle")}</p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {prizes.map((p) => (
-            <div
-              key={p.id}
-              className="flex flex-col items-center rounded-[var(--radius-card)] border border-line bg-paper p-6 text-center shadow-sm"
-            >
-              <Image src={p.image} alt={p.name} width={180} height={180} className="h-36 w-auto object-contain" />
-              <span className="mt-4 font-display text-lg font-bold text-ink-900">{p.name}</span>
-              <Button href="/" className="mt-4">
-                {p.ctaLabel}
-              </Button>
-            </div>
-          ))}
-        </div>
-      </Section>
-    );
-  }
-
   return (
     <section id="lots" className="relative bg-cloud">
       <div ref={wrapRef} className="relative h-[320vh]">
@@ -113,13 +83,11 @@ export function PrizeSphere() {
           <p className="text-xs font-semibold uppercase tracking-widest text-mist">{t("pick")}</p>
           <h2 className="mt-2 text-center font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
 
-          {/* Scène 3D */}
           <div className="relative mt-6 w-full" style={{ perspective: "1200px" }}>
             <div
               className="relative mx-auto h-72 w-full max-w-3xl md:h-80"
               style={{ transformStyle: "preserve-3d" }}
             >
-              {/* halo */}
               <div
                 className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
                 style={{ background: "radial-gradient(closest-side, rgba(255,107,0,.22), transparent)" }}
@@ -131,7 +99,6 @@ export function PrizeSphere() {
             </div>
           </div>
 
-          {/* Nom + CTA du lot de devant */}
           <div className="mt-6 flex flex-col items-center text-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -157,4 +124,39 @@ export function PrizeSphere() {
       </div>
     </section>
   );
+}
+
+/** Grille statique — rendu SSR / premier paint / reduced-motion. */
+function FallbackGrid() {
+  const t = useTranslations("prizes");
+  const prizes = showcasePrizes[localeKey(useLocale())];
+  return (
+    <Section id="lots" tone="cloud">
+      <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
+      <p className="mt-3 max-w-xl text-mist">{t("subtitle")}</p>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {prizes.map((p) => (
+          <div
+            key={p.id}
+            className="flex flex-col items-center rounded-[var(--radius-card)] border border-line bg-paper p-6 text-center shadow-sm"
+          >
+            <Image src={p.image} alt={p.name} width={180} height={180} className="h-36 w-auto object-contain" />
+            <span className="mt-4 font-display text-lg font-bold text-ink-900">{p.name}</span>
+            <Button href="/" className="mt-4">
+              {p.ctaLabel}
+            </Button>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+export function PrizeSphere() {
+  const reduce = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (reduce || !mounted) return <FallbackGrid />;
+  return <SphereScene />;
 }
