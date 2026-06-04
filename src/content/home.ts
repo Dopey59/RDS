@@ -89,12 +89,13 @@ export const showcasePrizes: Record<Locale, ShowcasePrize[]> = {
 
 export type Partner = { id: string; name: string; logo: string };
 
-// Partenaires confirmés — déposer les logos dans public/brand/partners/
+// Partenaires confirmés — logos dans public/brand/partners/ (noms kebab ASCII)
 export const partners: Partner[] = [
   { id: "boulanger", name: "Boulanger", logo: "/brand/partners/boulanger.png" },
   { id: "cristaline", name: "Cristaline", logo: "/brand/partners/cristaline.png" },
+  { id: "micromania", name: "Micromania", logo: "/brand/partners/micromania.svg" },
+  { id: "decathlon", name: "Decathlon", logo: "/brand/partners/decathlon.svg" },
   { id: "forumjobs", name: "Forum Jobs", logo: "/brand/partners/forumjobs.png" },
-  { id: "micromania", name: "Micromania", logo: "/brand/partners/micromania.png" },
 ];
 
 export function localeKey(locale: string): Locale {

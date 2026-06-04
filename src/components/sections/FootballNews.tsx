@@ -9,7 +9,7 @@ const PHOTOS = [
   "/photos/stadium.jpg",
   "/photos/pitch-aerial.jpg",
   "/photos/stadium-lights.jpg",
-  "/photos/news4.jpg",
+  "/photos/boots.jpg",
 ];
 
 export function FootballNews() {
