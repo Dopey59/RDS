@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { display, inter } from "@/lib/fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SplashScreen } from "@/components/ui/SplashScreen";
 import "../globals.css";
 
 type LocaleParams = { params: Promise<{ locale: string }> };
@@ -41,6 +42,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${display.variable} ${inter.variable}`}>
       <body className="min-h-dvh text-body antialiased">
         <NextIntlClientProvider>
+          <SplashScreen />
           <Header />
           <main>{children}</main>
           <Footer />
