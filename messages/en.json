@@ -62,7 +62,7 @@
     "countdownLabel": "You have",
     "countdownSub": "seconds to scratch",
     "scratchHint": "swipe to reveal",
-    "results": { "pts": "+500 pts", "label": "Earned this goal", "rank": "You climb from #124 to #89" }
+    "results": { "pts": "+50 pts", "label": "Earned this goal", "rank": "You climb from #124 to #89" }
   },
   "countdown": {
     "title": "Kick-off is coming",

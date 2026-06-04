@@ -115,6 +115,8 @@ function StoryScene() {
   const countdownShown = active === 1;
   const cardShown = active >= 2;
   const resultsShown = active === 3;
+  // La carte disparaît dès que les résultats s'affichent (pas de superposition)
+  const cardVisible = cardShown && !resultsShown;
 
   return (
     <section id="comment" ref={wrapRef} className="relative h-[450vh] bg-paper">
@@ -199,7 +201,7 @@ function StoryScene() {
             {/* Carte à gratter */}
             <div
               className="absolute inset-x-0 bottom-[58px] z-[6] flex justify-center transition-all duration-500"
-              style={{ opacity: cardShown ? 1 : 0, transform: `scale(${cardShown ? 1 : 0.85})` }}
+              style={{ opacity: cardVisible ? 1 : 0, transform: `scale(${cardVisible ? 1 : 0.85})` }}
             >
               <div className="rounded-[1.4rem] bg-gradient-to-br from-orange-400 via-orange-500 to-blue-600 p-[1.5px] shadow-xl">
                 <div
@@ -218,7 +220,7 @@ function StoryScene() {
 
             {/* Résultats */}
             <div
-              className="absolute inset-0 z-[7] flex flex-col items-center justify-center gap-3 bg-black/85 transition-opacity duration-500"
+              className="absolute inset-0 z-[7] flex flex-col items-center justify-center gap-3 bg-black/95 backdrop-blur-sm transition-opacity duration-500"
               style={{ opacity: resultsShown ? 1 : 0, pointerEvents: "none" }}
             >
               <span className="font-display text-[3.2rem] leading-none text-orange-500">{t("results.pts")}</span>

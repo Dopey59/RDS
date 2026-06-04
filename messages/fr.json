@@ -62,7 +62,7 @@
     "countdownLabel": "Tu as",
     "countdownSub": "secondes pour gratter",
     "scratchHint": "glisse pour révéler",
-    "results": { "pts": "+500 pts", "label": "Gagnés ce but", "rank": "Tu passes de #124 à #89" }
+    "results": { "pts": "+50 pts", "label": "Gagnés ce but", "rank": "Tu passes de #124 à #89" }
   },
   "countdown": {
     "title": "Le coup d'envoi approche",
