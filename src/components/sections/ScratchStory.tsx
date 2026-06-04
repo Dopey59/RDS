@@ -1,14 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-  useReducedMotion,
-  type MotionValue,
-} from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { BallIcon, ArrowUpIcon } from "@/components/ui/icons";
 
@@ -17,74 +10,6 @@ type Step = { index: string; title: string; body: string };
 const CW = 244;
 const CH = 304;
 const BRUSH = 22;
-
-// Serpentins RDS qui jaillissent de derrière le téléphone — rubans SVG ondulés,
-// multiples et de tailles variées, générés en éventail autour du centre (300,320).
-const STREAMER_COLORS = ["#FF4D0A", "#0057FF", "#5AB4FF", "#F2EDE6", "#FF7A3D"];
-const STREAMERS = Array.from({ length: 11 }).map((_, i) => {
-  const cx = 300;
-  const cy = 320;
-  const ang = (i / 11) * Math.PI * 2 + 0.35; // éventail tout autour
-  const len = 110 + (i % 4) * 65; // longueurs variées
-  const perp = ang + Math.PI / 2;
-  const wob = i % 2 ? 46 : -38; // sens d'ondulation alterné
-  const p1x = cx + Math.cos(ang) * len * 0.35 + Math.cos(perp) * wob;
-  const p1y = cy + Math.sin(ang) * len * 0.35 + Math.sin(perp) * wob;
-  const p2x = cx + Math.cos(ang) * len * 0.7 - Math.cos(perp) * wob * 0.8;
-  const p2y = cy + Math.sin(ang) * len * 0.7 - Math.sin(perp) * wob * 0.8;
-  const ex = cx + Math.cos(ang) * len;
-  const ey = cy + Math.sin(ang) * len;
-  return {
-    d: `M${cx} ${cy} Q ${p1x} ${p1y} ${p2x} ${p2y} T ${ex} ${ey}`,
-    c: STREAMER_COLORS[i % STREAMER_COLORS.length],
-    w: 3 + (i % 4) * 1.8, // épaisseurs variées
-  };
-});
-
-/** Serpentins : tracés au scroll, ondulent en continu (filtre de déplacement),
- *  dérivent vers l'extérieur et disparaissent en fade out. */
-function Streamers({ progress }: { progress: MotionValue<number> }) {
-  const draw = useTransform(progress, [0.02, 0.3], [0, 1]);
-  // Dérive progressive vers l'extérieur + fade out en fin de section
-  const scale = useTransform(progress, [0.05, 1], [0.7, 1.55]);
-  const opacity = useTransform(progress, [0, 0.1, 0.6, 0.95], [0, 1, 1, 0]);
-  return (
-    <motion.svg
-      viewBox="0 0 600 640"
-      className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[130%] w-[160%] -translate-x-1/2 -translate-y-1/2"
-      style={{ opacity, scale }}
-      aria-hidden
-    >
-      <defs>
-        {/* Ondulation continue : on anime le champ de bruit -> les rubans serpentent */}
-        <filter id="streamerWobble" x="-25%" y="-25%" width="150%" height="150%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.011 0.02" numOctaves="2" seed="7" result="noise">
-            <animate
-              attributeName="baseFrequency"
-              dur="6s"
-              values="0.011 0.02;0.018 0.03;0.011 0.02"
-              repeatCount="indefinite"
-            />
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </defs>
-      <g filter="url(#streamerWobble)">
-        {STREAMERS.map((s, i) => (
-          <motion.path
-            key={i}
-            d={s.d}
-            stroke={s.c}
-            strokeWidth={s.w}
-            strokeLinecap="round"
-            fill="none"
-            style={{ pathLength: draw }}
-          />
-        ))}
-      </g>
-    </motion.svg>
-  );
-}
 
 /** Sphère 3D — voir PrizeSphere : ici, scroll storytelling du grattage. */
 function StoryScene() {
@@ -225,8 +150,6 @@ function StoryScene() {
 
         {/* DROITE — téléphone */}
         <div className="relative order-1 flex items-center justify-center pb-6 md:order-2 md:pb-0">
-          {/* Serpentins RDS — derrière le téléphone */}
-          <Streamers progress={scrollYProgress} />
           {/* Timeline orange — identique au companion (bord gauche de la colonne, 80% de haut) */}
           <div className="pointer-events-none absolute bottom-[10%] left-0 top-[10%] hidden w-0.5 overflow-hidden bg-white/[0.07] md:block">
             <motion.div
