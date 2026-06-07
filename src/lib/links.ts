@@ -1,5 +1,7 @@
-// Ancre vers la section téléchargement de la landing page
-export const DOWNLOAD_HREF = "/#download";
+// Ancre pure : scroll vers la section téléchargement (uniquement depuis la homepage)
+export const DOWNLOAD_HREF = "#download";
+// Ancre absolue : navigation depuis n'importe quelle page vers la section téléchargement
+export const DOWNLOAD_HREF_ABS = "/#download";
 
 // Liens stores officiels RDS. Override possible via env en prod.
 export const APP_STORE_URL =

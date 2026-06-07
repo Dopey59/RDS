@@ -6,7 +6,8 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
-import { DOWNLOAD_HREF } from "@/lib/links";
+import { DOWNLOAD_HREF, DOWNLOAD_HREF_ABS } from "@/lib/links";
+import { smoothScrollTop } from "@/lib/scroll";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -14,58 +15,36 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
 
-  function scrollToTop() {
-    const el = document.documentElement;
-    const start = el.scrollTop || window.scrollY;
-    if (start === 0) return;
-    const duration = 550;
-    const startTime = performance.now();
-    let rafId: number;
-    function step(now: number) {
-      const p = Math.min((now - startTime) / duration, 1);
-      const ease = 1 - Math.pow(1 - p, 3);
-      const next = Math.round(start * (1 - ease));
-      el.scrollTop = next;
-      document.body.scrollTop = next; // fallback Safari
-      if (p < 1) {
-        rafId = requestAnimationFrame(step);
-      }
-    }
-    rafId = requestAnimationFrame(step);
-    // Filet de sécurité : force 0 à la fin de l'animation
-    setTimeout(() => {
-      cancelAnimationFrame(rafId);
-      el.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }, duration + 50);
-  }
-
   const links = [
     { href: "/#comment", label: t("howItWorks") },
-    { href: "/#lots", label: t("prizes") },
+    { href: "/#lots",    label: t("prizes") },
     { href: "/partenaires", label: t("partners") },
-    { href: "/#faq", label: t("faq") },
+    { href: "/#faq",    label: t("faq") },
   ] as const;
 
+  function handleLogoClick(e: React.MouseEvent) {
+    e.preventDefault();
+    if (pathname === "/") {
+      smoothScrollTop();
+    } else {
+      router.push("/");
+    }
+  }
+
   return (
-    <header className="sticky top-0 z-50 "
-    style={{
+    <header
+      className="sticky top-0 z-50"
+      style={{
         background:
           "radial-gradient(120% 90% at 50% 45%, #1f1d75 0%, #181666 35%, #11104f 65%, #0a0930 100%)",
-      }}>
+      }}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link
           href="/"
           className="flex items-center"
           aria-label="Renard des Surfaces — accueil"
-          onClick={(e) => {
-            e.preventDefault();
-            if (pathname === "/") {
-              scrollToTop();
-            } else {
-              router.push("/");
-            }
-          }}
+          onClick={handleLogoClick}
         >
           <Image
             src="/brand/icons/Logo + nom.png"
@@ -79,12 +58,16 @@ export function Header() {
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Principale">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm font-medium text-white/75 hover:text-orange-400 transition-colors">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-sm font-medium text-white/75 hover:text-orange-400 transition-colors"
+            >
               {l.label}
             </Link>
           ))}
           <LocaleSwitcher />
-          <Button href={DOWNLOAD_HREF} className="px-5">
+          <Button href={pathname === "/" ? DOWNLOAD_HREF : DOWNLOAD_HREF_ABS} className="px-5">
             {t("play")}
           </Button>
         </nav>
@@ -120,7 +103,7 @@ export function Header() {
           <div className="mt-2 px-2">
             <LocaleSwitcher />
           </div>
-          <Button href={DOWNLOAD_HREF} className="mt-2">
+          <Button href={pathname === "/" ? DOWNLOAD_HREF : DOWNLOAD_HREF_ABS} className="mt-2">
             {t("play")}
           </Button>
         </nav>
