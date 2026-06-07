@@ -94,8 +94,24 @@ function SphereScene() {
         <div className="sticky top-0 flex h-screen flex-col items-center justify-between overflow-hidden px-4 pb-10 pt-20 md:pb-14 md:pt-28">
           {/* Zone haute : titre */}
           <div className="shrink-0 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-mist">{t("pick")}</p>
-            <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
+            <motion.p
+              className="text-xs font-semibold uppercase tracking-widest text-mist"
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {t("pick")}
+            </motion.p>
+            <motion.h2
+              className="mt-2 font-display text-3xl font-bold md:text-4xl"
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+            >
+              {t("title")}
+            </motion.h2>
           </div>
 
           {/* Zone centrale : sphère (occupe l'espace dispo, image centrée) */}
@@ -138,26 +154,48 @@ function SphereScene() {
   );
 }
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 /** Grille statique — rendu SSR / premier paint / reduced-motion. */
 function FallbackGrid() {
   const t = useTranslations("prizes");
   const prizes = showcasePrizes[localeKey(useLocale())];
   return (
     <Section id="lots" tone="cloud">
-      <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
-      <p className="mt-3 max-w-xl text-mist">{t("subtitle")}</p>
+      <motion.h2
+        className="font-display text-3xl font-bold md:text-4xl"
+        initial={{ opacity: 0, x: -32 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: EASE }}
+      >
+        {t("title")}
+      </motion.h2>
+      <motion.p
+        className="mt-3 max-w-xl text-mist"
+        initial={{ opacity: 0, x: 32 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: EASE, delay: 0.08 }}
+      >
+        {t("subtitle")}
+      </motion.p>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {prizes.map((p) => (
-          <div
+        {prizes.map((p, i) => (
+          <motion.div
             key={p.id}
             className="flex flex-col items-center rounded-[var(--radius-card)] border border-line bg-paper p-6 text-center shadow-sm"
+            initial={{ opacity: 0, y: 36, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, ease: EASE, delay: i * 0.08 }}
           >
             <Image src={p.image} alt={p.name} width={180} height={180} className="h-36 w-auto object-contain" />
             <span className="mt-4 font-display text-lg font-bold text-ink-900">{p.name}</span>
             <Button href="/" className="mt-4">
               {p.ctaLabel}
             </Button>
-          </div>
+          </motion.div>
         ))}
       </div>
     </Section>

@@ -3,13 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { BallIcon, ArrowUpIcon } from "@/components/ui/icons";
+
 
 type Step = { index: string; title: string; body: string };
 
-const CW = 244;
-const CH = 304;
-const BRUSH = 22;
+const CS = 200; // taille du canvas carré (card-50pts est carrée)
+const BRUSH = 18;
 
 /** Sphère 3D — voir PrizeSphere : ici, scroll storytelling du grattage. */
 function StoryScene() {
@@ -24,58 +23,91 @@ function StoryScene() {
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start start", "end end"] });
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(3);
-  // La notif pop quand la section entre dans le viewport (pas avant)
   const [entered, setEntered] = useState(false);
 
-  // Peinture de la couche à gratter (foil métallique bleu)
+  // Initialise le foil de grattage (gradient bleu métallique) sur le canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = CW * dpr;
-    canvas.height = CH * dpr;
+    canvas.width = CS * dpr;
+    canvas.height = CS * dpr;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.scale(dpr, dpr);
 
-    ctx.globalCompositeOperation = "source-over";
-    const g = ctx.createLinearGradient(0, 0, CW, CH);
-    g.addColorStop(0, "#1a7ce0");
-    g.addColorStop(0.45, "#0057ff");
-    g.addColorStop(1, "#01296b");
+    // Fond orange brand (#FF4D0A)
+    const g = ctx.createLinearGradient(0, 0, CS, CS);
+    g.addColorStop(0, "#ff7a3d");
+    g.addColorStop(0.5, "#ff4d0a");
+    g.addColorStop(1, "#c73d08");
     ctx.fillStyle = g;
-    ctx.fillRect(0, 0, CW, CH);
-    const sh = ctx.createLinearGradient(0, 0, CW, CH);
-    sh.addColorStop(0, "rgba(255,255,255,0)");
-    sh.addColorStop(0.5, "rgba(255,255,255,.32)");
+    ctx.fillRect(0, 0, CS, CS);
+
+    // Texture grille subtile (lignes diagonales claires)
+    ctx.strokeStyle = "rgba(255,255,255,0.07)";
+    ctx.lineWidth = 1;
+    for (let i = -CS; i < CS * 2; i += 10) {
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i + CS, CS);
+      ctx.stroke();
+    }
+
+    // Reflet central (shimmer)
+    const sh = ctx.createRadialGradient(CS * 0.5, CS * 0.38, 0, CS * 0.5, CS * 0.38, CS * 0.55);
+    sh.addColorStop(0, "rgba(255,255,255,.22)");
     sh.addColorStop(1, "rgba(255,255,255,0)");
     ctx.fillStyle = sh;
-    ctx.fillRect(0, 0, CW, CH);
-    ctx.textAlign = "center";
-    ctx.fillStyle = "rgba(255,255,255,.9)";
-    ctx.font = "800 22px Inter, sans-serif";
-    ctx.fillText("GRATTE", CW / 2, CH / 2 - 2);
-    ctx.fillStyle = "rgba(255,255,255,.45)";
-    ctx.font = "400 10px Inter, sans-serif";
-    ctx.fillText(t("scratchHint"), CW / 2, CH / 2 + 16);
+    ctx.fillRect(0, 0, CS, CS);
 
-    // Génère la trajectoire de grattage (balayage sinusoïdal)
+    // Cadre intérieur arrondi
+    const r = 12;
+    const m = 10;
+    ctx.strokeStyle = "rgba(255,255,255,0.25)";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(m, m, CS - m * 2, CS - m * 2, r);
+    ctx.stroke();
+
+    // Icône pièce / étoile au centre
+    ctx.fillStyle = "rgba(255,255,255,0.15)";
+    ctx.beginPath();
+    ctx.arc(CS / 2, CS / 2 - 14, 22, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,0.35)";
+    ctx.beginPath();
+    ctx.arc(CS / 2, CS / 2 - 14, 14, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Texte "GRATTE"
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(255,255,255,0.95)";
+    ctx.font = "900 17px Inter, sans-serif";
+    ctx.letterSpacing = "2px";
+    ctx.fillText("GRATTE", CS / 2, CS / 2 + 18);
+    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    ctx.font = "400 8px Inter, sans-serif";
+    ctx.letterSpacing = "1px";
+    ctx.fillText(t("scratchHint"), CS / 2, CS / 2 + 32);
+
+    // Trajectoire de grattage sinusoïdale
     const path: { x: number; y: number }[] = [];
-    const rows = 7;
+    const rows = 6;
     for (let row = 0; row < rows; row++) {
-      const y = (CH / (rows + 1)) * (row + 1);
+      const y = (CS / (rows + 1)) * (row + 1);
       const dir = row % 2 ? -1 : 1;
-      for (let s = 0; s <= 26; s++) {
-        const p = s / 26;
-        const x = dir > 0 ? CW * 0.12 + p * CW * 0.76 : CW * 0.88 - p * CW * 0.76;
-        path.push({ x, y: y + Math.sin(p * Math.PI * 2) * 6 });
+      for (let s = 0; s <= 24; s++) {
+        const p = s / 24;
+        const x = dir > 0 ? CS * 0.1 + p * CS * 0.8 : CS * 0.9 - p * CS * 0.8;
+        path.push({ x, y: y + Math.sin(p * Math.PI * 2) * 5 });
       }
     }
     scratchPathRef.current = path;
     scratchIdxRef.current = 0;
   }, [t]);
 
-  // Auto-scratch piloté par le scroll (étape 3)
+  // Grattage automatique piloté par le scroll (étape 3)
   const autoScratch = (target: number) => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
@@ -102,9 +134,7 @@ function StoryScene() {
     const stepProg = v * 4;
     const idx = Math.min(3, Math.floor(stepProg));
     setActive(idx);
-
     if (idx === 1) {
-      // chrono 3→1 selon la progression locale
       const local = stepProg - 1;
       setCount(Math.max(1, 3 - Math.floor(local * 3)));
     }
@@ -123,9 +153,15 @@ function StoryScene() {
 
   return (
     <section id="comment" ref={wrapRef} className="relative h-[450vh] bg-paper">
-      <div className="sticky top-0 grid h-screen grid-cols-1 items-center overflow-hidden md:grid-cols-2">
+      <div className="sticky top-0 grid h-screen grid-cols-1 items-center overflow-hidden md:grid-cols-2 ">
         {/* GAUCHE — textes étapes */}
-        <div className="relative order-2 px-6 md:order-1 md:px-12 lg:px-20">
+        <motion.div
+          className="relative order-2 px-6 md:order-1 md:px-12 lg:px-20"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
           {steps.map((s, i) => (
             <div
               key={i}
@@ -146,7 +182,7 @@ function StoryScene() {
               <p className="mt-5 max-w-sm text-sm font-light leading-relaxed text-mist">{s.body}</p>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* DROITE — téléphone */}
         <div className="relative order-1 flex items-center justify-center pb-6 md:order-2 md:pb-0">
@@ -176,25 +212,16 @@ function StoryScene() {
               style={{ backgroundImage: "url(/photos/phonebg.jpg)", filter: "grayscale(.4) brightness(.4)" }}
             />
 
-            {/* Notification — apparition du bas vers le haut avec léger rebond (pop) */}
+            {/* Notification — même image que la hero pour cohérence visuelle */}
             <div
-              className="absolute inset-x-2.5 top-7 z-[5] flex items-start gap-2.5 rounded-2xl border border-white/12 bg-[#28282a]/75 p-3 backdrop-blur-xl transition-all duration-[550ms] [transition-timing-function:cubic-bezier(.34,1.56,.64,1)]"
+              className="absolute inset-x-2.5 top-7 z-[5] transition-all duration-[550ms] [transition-timing-function:cubic-bezier(.34,1.56,.64,1)]"
               style={{
                 transform: notifShown ? "translateY(0) scale(1)" : "translateY(22px) scale(0.96)",
                 opacity: notifShown ? 1 : 0,
               }}
             >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-orange-500">
-                <BallIcon className="h-5 w-5 text-white" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[0.56rem] font-bold tracking-wide text-white/55">{t("notif.app")}</span>
-                  <span className="ml-auto text-[0.52rem] text-white/35">{t("notif.now")}</span>
-                </div>
-                <div className="mt-0.5 text-[0.74rem] font-bold leading-tight text-white">{t("notif.title")}</div>
-                <div className="mt-0.5 text-[0.68rem] leading-tight text-white/60">{t("notif.body")}</div>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/v2/notif-but.png" alt="" className="h-auto w-full" />
             </div>
 
             {/* Compte à rebours */}
@@ -214,35 +241,34 @@ function StoryScene() {
               <span className="text-[0.62rem] text-white/35">{t("countdownSub")}</span>
             </div>
 
-            {/* Carte à gratter */}
+            {/* Carte à gratter — image hero + foil canvas au scroll */}
             <div
               className="absolute inset-x-0 bottom-[58px] z-[6] flex justify-center transition-all duration-500"
               style={{ opacity: cardVisible ? 1 : 0, transform: `scale(${cardVisible ? 1 : 0.85})` }}
             >
-              <div className="rounded-[1.4rem] bg-gradient-to-br from-orange-400 via-orange-500 to-blue-600 p-[1.5px] shadow-xl">
-                <div
-                  className="relative flex flex-col items-center justify-center gap-1.5 overflow-hidden rounded-[calc(1.4rem-1.5px)] bg-white p-4"
-                  style={{ width: CW * 0.7, height: CH * 0.7 }}
-                >
-                  <span className="font-display text-4xl leading-none text-orange-500">50 pts</span>
-                  <canvas ref={canvasRef} className="absolute inset-0 rounded-[calc(1.4rem-1.5px)]" />
-                </div>
+              <div className="relative w-[62%]" style={{ filter: "drop-shadow(0 12px 28px rgba(255,77,10,0.45))" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/v2/card-50pts.png" alt="" className="h-auto w-full rounded-[var(--radius-card)]" />
+                {/* Foil de grattage — s'efface au scroll (destination-out) */}
+                <canvas
+                  ref={canvasRef}
+                  className="absolute inset-0 h-full w-full rounded-[var(--radius-card)]"
+                />
               </div>
             </div>
 
-            {/* Résultats */}
+            {/* Résultats — carte 50pts révélée sur fond noir */}
             <div
-              className="absolute inset-0 z-[7] flex flex-col items-center justify-center gap-3 bg-black/95 backdrop-blur-sm transition-opacity duration-500"
+              className="absolute inset-0 z-[7] flex items-center justify-center bg-black transition-opacity duration-500"
               style={{ opacity: resultsShown ? 1 : 0, pointerEvents: "none" }}
             >
-              <span className="font-display text-[3.2rem] leading-none text-orange-500">{t("results.pts")}</span>
-              <span className="text-[0.6rem] font-semibold uppercase tracking-widest text-white/35">
-                {t("results.label")}
-              </span>
-              <span className="flex items-center gap-1.5 rounded-full border border-white/12 bg-white/8 px-3.5 py-1.5 text-[0.7rem] font-semibold text-white">
-                <ArrowUpIcon className="h-3.5 w-3.5 text-emerald-400" />
-                {t("results.rank")}
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/v2/card-50pts.png"
+                alt=""
+                className="w-[72%] h-auto rounded-[var(--radius-card)]"
+                style={{ filter: "drop-shadow(0 16px 36px rgba(255,77,10,0.5))" }}
+              />
             </div>
           </motion.div>
         </div>
@@ -258,14 +284,29 @@ function FallbackSteps() {
   return (
     <section id="comment" className="bg-paper py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="mb-3 text-[0.6rem] font-bold uppercase tracking-widest text-orange-500">{t("eyebrow")}</div>
+        <motion.div
+          className="mb-3 text-[0.6rem] font-bold uppercase tracking-widest text-orange-500"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {t("eyebrow")}
+        </motion.div>
         <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <li key={i} className="glass h-full rounded-[var(--radius-card)] p-6">
+            <motion.li
+              key={i}
+              className="glass h-full rounded-[var(--radius-card)] p-6"
+              initial={{ opacity: 0, y: 32, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+            >
               <span className="font-display text-2xl text-orange-500">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-3 whitespace-pre-line font-display text-lg leading-tight text-ink-900">{s.title}</h3>
               <p className="mt-2 text-sm text-mist">{s.body}</p>
-            </li>
+            </motion.li>
           ))}
         </ol>
       </div>

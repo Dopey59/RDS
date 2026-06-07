@@ -7,8 +7,9 @@
     "play": "Download"
   },
   "matchSchedule": {
-    "title": "Upcoming fixtures",
-    "subtitle": "Pick your 3 matches of the day and let the goals decide.",
+    "eyebrow": "The schedule",
+    "title": "Play every round",
+    "subtitle": "From the group stage to the final, a scratch card at every goal.",
     "cta": "See all in the app"
   },
   "partnersBand": {
@@ -36,7 +37,7 @@
     "badge": "100% free · not betting, not predictions, not gambling",
     "title": "Every goal can",
     "titleAccent": "make you win",
-    "subtitle": "Pick 3 matches. On every goal, you get an alert and scratch your card. Earn points and prizes from our partners. Game on.",
+    "subtitle": "The 100% free football scratch game. On every World Cup goal, scratch your card and win a stack of prizes: PS5, jerseys, gift cards and more.",
     "ctaAppStore": "App Store",
     "ctaPlayStore": "Google Play",
     "cardTitle": "Download the app",

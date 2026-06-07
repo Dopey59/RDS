@@ -93,10 +93,122 @@ export type Partner = { id: string; name: string; logo: string };
 export const partners: Partner[] = [
   { id: "boulanger", name: "Boulanger", logo: "/brand/partners/boulanger.png" },
   { id: "cristaline", name: "Cristaline", logo: "/brand/partners/cristaline.png" },
-  { id: "micromania", name: "Micromania", logo: "/brand/partners/micromania.svg" },
   { id: "decathlon", name: "Decathlon", logo: "/brand/partners/decathlon.svg" },
   { id: "forumjobs", name: "Forum Jobs", logo: "/brand/partners/forumjobs.png" },
 ];
+
+export type PartnerShowcase = {
+  id: string;
+  name: string;
+  logo: string;
+  /** Couleur de fond de la section (très légèrement tintée) */
+  bg: string;
+  /** Catégorie partenaire (ex: "Partenaire high-tech") */
+  eyebrow: string;
+  /** Accroche courte */
+  tagline: string;
+  /** Description 2-3 phrases */
+  body: string;
+  /** URL du site partenaire */
+  url: string;
+  /** Libellé du lien CTA */
+  urlLabel: string;
+};
+
+export const partnerShowcase: Record<Locale, PartnerShowcase[]> = {
+  fr: [
+    {
+      id: "boulanger",
+      name: "Boulanger",
+      logo: "/brand/partners/boulanger.png",
+      bg: "#c8daff",
+      eyebrow: "Partenaire high-tech",
+      tagline: "L'électronique au meilleur prix",
+      body: "Leader français du high-tech et de l'électroménager, Boulanger offre des cartes cadeaux et bons d'achat à gagner directement dans l'appli. Dépensez vos gains en magasin ou sur boulanger.com.",
+      url: "https://www.boulanger.com",
+      urlLabel: "Découvrir Boulanger",
+    },
+    {
+      id: "cristaline",
+      name: "Cristaline",
+      logo: "/brand/partners/cristaline.png",
+      bg: "#b8edff",
+      eyebrow: "Partenaire boissons",
+      tagline: "L'eau source de performance",
+      body: "Première eau minérale de France, Cristaline accompagne les joueurs les plus actifs de l'appli. Des packs exclusifs et des lots boissons à remporter chaque semaine.",
+      url: "https://www.cristaline.fr",
+      urlLabel: "Découvrir Cristaline",
+    },
+    {
+      id: "decathlon",
+      name: "Decathlon",
+      logo: "/brand/partners/decathlon.svg",
+      bg: "#b8dcff",
+      eyebrow: "Partenaire sport",
+      tagline: "Le sport pour tous",
+      body: "Avec plus de 1 700 magasins dans le monde, Decathlon équipe les sportifs de tous niveaux. Remportez des équipements, maillots et bons d'achat sport grâce à vos performances.",
+      url: "https://www.decathlon.fr",
+      urlLabel: "Découvrir Decathlon",
+    },
+    {
+      id: "forumjobs",
+      name: "Forum Jobs",
+      logo: "/brand/partners/forumjobs.png",
+      bg: "#ffd9b0",
+      eyebrow: "Partenaire emploi",
+      tagline: "Trouvez votre prochain job",
+      body: "Premier portail d'emploi en Belgique, Forum Jobs met en relation candidats et recruteurs depuis 20 ans. Des avantages exclusifs et des offres d'emploi prioritaires à débloquer dans l'appli.",
+      url: "https://www.forumjobs.be/fr",
+      urlLabel: "Découvrir Forum Jobs",
+    },
+  ],
+  en: [
+    {
+      id: "boulanger",
+      name: "Boulanger",
+      logo: "/brand/partners/boulanger.png",
+      bg: "#c8daff",
+      eyebrow: "Tech partner",
+      tagline: "Electronics at the best price",
+      body: "France's leading tech and appliances retailer, Boulanger offers gift cards and vouchers to win directly in the app. Spend your winnings in-store or on boulanger.com.",
+      url: "https://www.boulanger.com",
+      urlLabel: "Discover Boulanger",
+    },
+    {
+      id: "cristaline",
+      name: "Cristaline",
+      logo: "/brand/partners/cristaline.png",
+      bg: "#b8edff",
+      eyebrow: "Drinks partner",
+      tagline: "Water fuels performance",
+      body: "France's number-one mineral water, Cristaline supports the app's most active players. Exclusive packs and drink prizes to win every week.",
+      url: "https://www.cristaline.fr",
+      urlLabel: "Discover Cristaline",
+    },
+    {
+      id: "decathlon",
+      name: "Decathlon",
+      logo: "/brand/partners/decathlon.svg",
+      bg: "#b8dcff",
+      eyebrow: "Sports partner",
+      tagline: "Sport for everyone",
+      body: "With over 1,700 stores worldwide, Decathlon equips athletes at every level. Win equipment, jerseys and sports vouchers through your in-app performances.",
+      url: "https://www.decathlon.fr",
+      urlLabel: "Discover Decathlon",
+    },
+    {
+      id: "forumjobs",
+      name: "Forum Jobs",
+      logo: "/brand/partners/forumjobs.png",
+      bg: "#ffd9b0",
+      eyebrow: "Employment partner",
+      tagline: "Find your next job",
+      body: "Belgium's number-one job portal, Forum Jobs has connected candidates and recruiters for 20 years. Unlock exclusive job offers and perks directly in the app.",
+      url: "https://www.forumjobs.be/fr",
+      urlLabel: "Discover Forum Jobs",
+    },
+  ],
+};
 
 export function localeKey(locale: string): Locale {
   return locale === "en" ? "en" : "fr";

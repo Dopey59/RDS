@@ -7,8 +7,9 @@
     "play": "Télécharger"
   },
   "matchSchedule": {
-    "title": "Les prochains rendez-vous",
-    "subtitle": "Choisis tes 3 matchs du jour et laisse les buts décider.",
+    "eyebrow": "Le programme",
+    "title": "Joue à chaque phase",
+    "subtitle": "De la phase de poules à la grande finale, une carte à gratter à chaque but.",
     "cta": "Tout voir dans l'app"
   },
   "partnersBand": {
@@ -36,7 +37,7 @@
     "badge": "100% gratuit · ni pari, ni pronostic, ni jeu d'argent",
     "title": "Chaque but peut",
     "titleAccent": "te faire gagner",
-    "subtitle": "Choisis 3 matchs. À chaque but, tu reçois une alerte et tu grattes ta carte. Des points, des lots offerts par nos partenaires. À toi de jouer.",
+    "subtitle": "Le jeu de grattage football 100% gratuit. À chaque but de la Coupe du Monde, gratte ta carte et gagne un max des lots : PS5, maillots, bons d'achat et bien plus.",
     "ctaAppStore": "App Store",
     "ctaPlayStore": "Google Play",
     "cardTitle": "Télécharge l'app",

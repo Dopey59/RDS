@@ -3,13 +3,29 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 
 export function Header() {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function scrollToTop() {
+    const start = window.scrollY;
+    if (start === 0) return;
+    const duration = 600;
+    const startTime = performance.now();
+    function step(now: number) {
+      const p = Math.min((now - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      window.scrollTo(0, start * (1 - ease));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
 
   const links = [
     { href: "/#comment", label: t("howItWorks") },
@@ -19,18 +35,38 @@ export function Header() {
   ] as const;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 "
+    style={{
+        background:
+          "radial-gradient(120% 90% at 50% 45%, #1f1d75 0%, #181666 35%, #11104f 65%, #0a0930 100%)",
+      }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Renard des Surfaces — accueil">
-          <Image src="/brand/app-icon.svg" alt="" width={34} height={34} priority />
-          <span className="font-display text-lg font-bold tracking-tight text-ink-900">
-            Renard des Surfaces
-          </span>
+        <Link
+          href="/"
+          className="flex items-center"
+          aria-label="Renard des Surfaces — accueil"
+          onClick={(e) => {
+            e.preventDefault();
+            if (pathname === "/") {
+              scrollToTop();
+            } else {
+              router.push("/");
+            }
+          }}
+        >
+          <Image
+            src="/brand/icons/Logo + nom.png"
+            alt="Renard des Surfaces"
+            width={180}
+            height={40}
+            className="h-9 w-auto"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Principale">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm font-medium text-ink-700 hover:text-blue-600">
+            <Link key={l.href} href={l.href} className="text-sm font-medium text-white/75 hover:text-orange-400 transition-colors">
               {l.label}
             </Link>
           ))}
@@ -42,7 +78,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-ink-900 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-white md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label="Menu"
@@ -62,7 +98,7 @@ export function Header() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-lg px-2 py-3 font-medium text-ink-700 hover:bg-cloud"
+              className="rounded-lg px-2 py-3 font-medium text-white/80 hover:bg-white/10"
               onClick={() => setOpen(false)}
             >
               {l.label}
