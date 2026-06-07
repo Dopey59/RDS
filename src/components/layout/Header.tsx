@@ -9,18 +9,22 @@ import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { DOWNLOAD_HREF, DOWNLOAD_HREF_ABS } from "@/lib/links";
 import { smoothScrollTop } from "@/lib/scroll";
 
+const NAV_LINKS = [
+  { href: "/#comment",    id: "comment",    key: "howItWorks" },
+  { href: "/#lots",       id: "lots",       key: "prizes"     },
+  { href: "/partenaires", id: null,         key: "partners"   },
+  { href: "/#faq",        id: "faq",        key: "faq"        },
+] as const;
+
+function scrollToId(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "instant", block: "start" });
+}
+
 export function Header() {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-
-  const links = [
-    { href: "/#comment", label: t("howItWorks") },
-    { href: "/#lots",    label: t("prizes") },
-    { href: "/partenaires", label: t("partners") },
-    { href: "/#faq",    label: t("faq") },
-  ] as const;
 
   function handleLogoClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -28,6 +32,20 @@ export function Header() {
       smoothScrollTop();
     } else {
       router.push("/");
+    }
+  }
+
+  function handleNavClick(e: React.MouseEvent, id: string | null) {
+    if (id && pathname === "/") {
+      e.preventDefault();
+      scrollToId(id);
+    }
+  }
+
+  function handleDownloadClick(e: React.MouseEvent) {
+    if (pathname === "/") {
+      e.preventDefault();
+      scrollToId("download");
     }
   }
 
@@ -57,17 +75,22 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Principale">
-          {links.map((l) => (
+          {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className="text-sm font-medium text-white/75 hover:text-orange-400 transition-colors"
+              onClick={(e) => handleNavClick(e, l.id)}
             >
-              {l.label}
+              {t(l.key)}
             </Link>
           ))}
           <LocaleSwitcher />
-          <Button href={pathname === "/" ? DOWNLOAD_HREF : DOWNLOAD_HREF_ABS} className="px-5">
+          <Button
+            href={pathname === "/" ? DOWNLOAD_HREF : DOWNLOAD_HREF_ABS}
+            className="px-5"
+            onClick={handleDownloadClick}
+          >
             {t("play")}
           </Button>
         </nav>
@@ -90,20 +113,24 @@ export function Header() {
           className="flex flex-col gap-1 border-t border-line px-4 py-3 md:hidden"
           aria-label="Mobile"
         >
-          {links.map((l) => (
+          {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className="rounded-lg px-2 py-3 font-medium text-white/80 hover:bg-white/10"
-              onClick={() => setOpen(false)}
+              onClick={(e) => { handleNavClick(e, l.id); setOpen(false); }}
             >
-              {l.label}
+              {t(l.key)}
             </Link>
           ))}
           <div className="mt-2 px-2">
             <LocaleSwitcher />
           </div>
-          <Button href={pathname === "/" ? DOWNLOAD_HREF : DOWNLOAD_HREF_ABS} className="mt-2">
+          <Button
+            href={pathname === "/" ? DOWNLOAD_HREF : DOWNLOAD_HREF_ABS}
+            className="mt-2"
+            onClick={handleDownloadClick}
+          >
             {t("play")}
           </Button>
         </nav>

@@ -55,13 +55,7 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
-  /* Les sections ancrées ne passent pas sous le header sticky */
+  /* scroll-behavior géré par JS pour éviter le blocage sur sections sticky */
   section[id] {
     scroll-margin-top: 4.5rem;
   }
