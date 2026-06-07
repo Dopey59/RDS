@@ -1,3 +1,6 @@
+// Ancre vers la section téléchargement de la landing page
+export const DOWNLOAD_HREF = "/#download";
+
 // Liens stores officiels RDS. Override possible via env en prod.
 export const APP_STORE_URL =
   process.env.NEXT_PUBLIC_APP_STORE_URL ??

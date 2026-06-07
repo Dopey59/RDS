@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
+import { DOWNLOAD_HREF } from "@/lib/links";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -14,17 +15,29 @@ export function Header() {
   const router = useRouter();
 
   function scrollToTop() {
-    const start = window.scrollY;
+    const el = document.documentElement;
+    const start = el.scrollTop || window.scrollY;
     if (start === 0) return;
-    const duration = 600;
+    const duration = 550;
     const startTime = performance.now();
+    let rafId: number;
     function step(now: number) {
       const p = Math.min((now - startTime) / duration, 1);
       const ease = 1 - Math.pow(1 - p, 3);
-      window.scrollTo(0, start * (1 - ease));
-      if (p < 1) requestAnimationFrame(step);
+      const next = Math.round(start * (1 - ease));
+      el.scrollTop = next;
+      document.body.scrollTop = next; // fallback Safari
+      if (p < 1) {
+        rafId = requestAnimationFrame(step);
+      }
     }
-    requestAnimationFrame(step);
+    rafId = requestAnimationFrame(step);
+    // Filet de sécurité : force 0 à la fin de l'animation
+    setTimeout(() => {
+      cancelAnimationFrame(rafId);
+      el.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, duration + 50);
   }
 
   const links = [
@@ -71,7 +84,7 @@ export function Header() {
             </Link>
           ))}
           <LocaleSwitcher />
-          <Button href="/" className="px-5">
+          <Button href={DOWNLOAD_HREF} className="px-5">
             {t("play")}
           </Button>
         </nav>
@@ -107,7 +120,7 @@ export function Header() {
           <div className="mt-2 px-2">
             <LocaleSwitcher />
           </div>
-          <Button href="/" className="mt-2">
+          <Button href={DOWNLOAD_HREF} className="mt-2">
             {t("play")}
           </Button>
         </nav>

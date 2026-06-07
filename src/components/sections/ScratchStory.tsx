@@ -243,7 +243,7 @@ function StoryScene() {
 
             {/* Carte à gratter — image hero + foil canvas au scroll */}
             <div
-              className="absolute inset-x-0 bottom-[58px] z-[6] flex justify-center transition-all duration-500"
+              className="absolute inset-0 z-[6] flex items-center justify-center transition-all duration-500"
               style={{ opacity: cardVisible ? 1 : 0, transform: `scale(${cardVisible ? 1 : 0.85})` }}
             >
               <div className="relative w-[62%]" style={{ filter: "drop-shadow(0 12px 28px rgba(255,77,10,0.45))" }}>

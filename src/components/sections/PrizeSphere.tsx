@@ -16,6 +16,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { ArrowDownIcon } from "@/components/ui/icons";
 import { showcasePrizes, localeKey, type ShowcasePrize } from "@/content/home";
+import { DOWNLOAD_HREF } from "@/lib/links";
 
 const TWO_PI = Math.PI * 2;
 
@@ -138,7 +139,7 @@ function SphereScene() {
                 className="flex flex-col items-center"
               >
                 <span className="font-display text-xl font-bold text-ink-900">{current.name}</span>
-                <Button href="/" className="mt-3 px-7 text-base">
+                <Button href={DOWNLOAD_HREF} className="mt-3 px-7 text-base">
                   {current.ctaLabel}
                 </Button>
               </motion.div>
@@ -192,7 +193,7 @@ function FallbackGrid() {
           >
             <Image src={p.image} alt={p.name} width={180} height={180} className="h-36 w-auto object-contain" />
             <span className="mt-4 font-display text-lg font-bold text-ink-900">{p.name}</span>
-            <Button href="/" className="mt-4">
+            <Button href={DOWNLOAD_HREF} className="mt-4">
               {p.ctaLabel}
             </Button>
           </motion.div>

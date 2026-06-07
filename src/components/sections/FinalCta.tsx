@@ -10,7 +10,7 @@ export function FinalCta() {
   const t = useTranslations("finalCta");
 
   return (
-    <section className="relative isolate overflow-hidden bg-cloud text-white">
+    <section id="download" className="relative isolate overflow-hidden bg-cloud text-white">
       <div className="band-blue absolute inset-0 -z-10" style={{ clipPath: BAND_CLIP }} aria-hidden />
       <div
         className="absolute inset-x-0 top-0 -z-10 h-16 bg-orange-500"

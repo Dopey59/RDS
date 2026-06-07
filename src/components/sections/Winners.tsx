@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { winners } from "@/content/home";
+import { DOWNLOAD_HREF } from "@/lib/links";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -54,7 +55,7 @@ export function Winners() {
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, ease: EASE, delay: winners.length * 0.07 }}
       >
-        <Button href="/">{t("cta")}</Button>
+        <Button href={DOWNLOAD_HREF}>{t("cta")}</Button>
       </motion.div>
     </Section>
   );
