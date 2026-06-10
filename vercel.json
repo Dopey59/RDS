@@ -1,9 +1,1 @@
-{
-  "redirects": [
-    {
-      "source": "/((?!\\.well-known/).*)",
-      "destination": "https://www.renard-des-surfaces.com/$1",
-      "permanent": true
-    }
-  ]
-}
+{}
