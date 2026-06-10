@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.grandjeu.rds",
+      "sha256_cert_fingerprints": [
+        "C8:7A:4D:A4:37:39:F9:3F:6F:EB:93:C0:6C:D9:55:BB:C9:E5:29:25:61:1F:4A:F3:73:0C:3F:57:32:98:62:A1"
+      ]
+    }
+  }
+]
