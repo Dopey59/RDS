@@ -73,16 +73,12 @@ export const showcasePrizes: Record<Locale, ShowcasePrize[]> = {
     { id: "ps5", image: "/photos/prizes/ps5.png", name: "PS5", ctaLabel: "Je tente la PS5" },
     { id: "iphone", image: "/photos/prizes/iphone.png", name: "iPhone 15 Pro", ctaLabel: "Je veux l'iPhone" },
     { id: "ipad", image: "/photos/prizes/ipad.png", name: "iPad mini", ctaLabel: "Décrocher l'iPad" },
-    { id: "airpods", image: "/photos/prizes/airpods.png", name: "AirPods Max", ctaLabel: "Gagner les AirPods" },
-    { id: "giftcard", image: "/photos/prizes/giftcard.png", name: "Carte cadeau 50 €", ctaLabel: "Empocher 50 €" },
     { id: "jersey", image: "/photos/prizes/jersey.png", name: "Maillot de foot", ctaLabel: "Porter le maillot" },
   ],
   en: [
     { id: "ps5", image: "/photos/prizes/ps5.png", name: "PS5", ctaLabel: "Go for the PS5" },
     { id: "iphone", image: "/photos/prizes/iphone.png", name: "iPhone 15 Pro", ctaLabel: "I want the iPhone" },
     { id: "ipad", image: "/photos/prizes/ipad.png", name: "iPad mini", ctaLabel: "Grab the iPad" },
-    { id: "airpods", image: "/photos/prizes/airpods.png", name: "AirPods Max", ctaLabel: "Win the AirPods" },
-    { id: "giftcard", image: "/photos/prizes/giftcard.png", name: "€50 gift card", ctaLabel: "Pocket €50" },
     { id: "jersey", image: "/photos/prizes/jersey.png", name: "Football jersey", ctaLabel: "Get the jersey" },
   ],
 };
@@ -91,8 +87,6 @@ export type Partner = { id: string; name: string; logo: string };
 
 // Partenaires confirmés — logos dans public/brand/partners/ (noms kebab ASCII)
 export const partners: Partner[] = [
-  { id: "boulanger", name: "Boulanger", logo: "/brand/partners/boulanger.png" },
-  { id: "cristaline", name: "Cristaline", logo: "/brand/partners/cristaline.png" },
   { id: "decathlon", name: "Decathlon", logo: "/brand/partners/decathlon.svg" },
   { id: "forumjobs", name: "Forum Jobs", logo: "/brand/partners/forumjobs.png" },
 ];
@@ -118,28 +112,6 @@ export type PartnerShowcase = {
 export const partnerShowcase: Record<Locale, PartnerShowcase[]> = {
   fr: [
     {
-      id: "boulanger",
-      name: "Boulanger",
-      logo: "/brand/partners/boulanger.png",
-      bg: "#c8daff",
-      eyebrow: "Partenaire high-tech",
-      tagline: "L'électronique au meilleur prix",
-      body: "Leader français du high-tech et de l'électroménager, Boulanger offre des cartes cadeaux et bons d'achat à gagner directement dans l'appli. Dépensez vos gains en magasin ou sur boulanger.com.",
-      url: "https://www.boulanger.com",
-      urlLabel: "Découvrir Boulanger",
-    },
-    {
-      id: "cristaline",
-      name: "Cristaline",
-      logo: "/brand/partners/cristaline.png",
-      bg: "#b8edff",
-      eyebrow: "Partenaire boissons",
-      tagline: "L'eau source de performance",
-      body: "Première eau minérale de France, Cristaline accompagne les joueurs les plus actifs de l'appli. Des packs exclusifs et des lots boissons à remporter chaque semaine.",
-      url: "https://www.cristaline.fr",
-      urlLabel: "Découvrir Cristaline",
-    },
-    {
       id: "decathlon",
       name: "Decathlon",
       logo: "/brand/partners/decathlon.svg",
@@ -163,28 +135,6 @@ export const partnerShowcase: Record<Locale, PartnerShowcase[]> = {
     },
   ],
   en: [
-    {
-      id: "boulanger",
-      name: "Boulanger",
-      logo: "/brand/partners/boulanger.png",
-      bg: "#c8daff",
-      eyebrow: "Tech partner",
-      tagline: "Electronics at the best price",
-      body: "France's leading tech and appliances retailer, Boulanger offers gift cards and vouchers to win directly in the app. Spend your winnings in-store or on boulanger.com.",
-      url: "https://www.boulanger.com",
-      urlLabel: "Discover Boulanger",
-    },
-    {
-      id: "cristaline",
-      name: "Cristaline",
-      logo: "/brand/partners/cristaline.png",
-      bg: "#b8edff",
-      eyebrow: "Drinks partner",
-      tagline: "Water fuels performance",
-      body: "France's number-one mineral water, Cristaline supports the app's most active players. Exclusive packs and drink prizes to win every week.",
-      url: "https://www.cristaline.fr",
-      urlLabel: "Discover Cristaline",
-    },
     {
       id: "decathlon",
       name: "Decathlon",
