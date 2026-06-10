@@ -19,10 +19,15 @@ export default function proxy(request: NextRequest) {
     return NextResponse.redirect(url, { status: 308 });
   }
 
+  // /group/[code] est hors [locale], ne pas laisser next-intl l'intercepter
+  if (pathname.startsWith("/group/")) {
+    return NextResponse.next();
+  }
+
   return intlMiddleware(request);
 }
 
 export const config = {
-  // Tout sauf /api, les internes Next, et les fichiers (avec extension)
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // Tout sauf /api, /group, les internes Next, et les fichiers (avec extension)
+  matcher: ["/((?!api|group|_next|_vercel|.*\\..*).*)"],
 };
