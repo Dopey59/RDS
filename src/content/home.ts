@@ -71,13 +71,11 @@ export type ShowcasePrize = { id: string; image: string; name: string; ctaLabel:
 export const showcasePrizes: Record<Locale, ShowcasePrize[]> = {
   fr: [
     { id: "ps5", image: "/photos/prizes/ps5.png", name: "PS5", ctaLabel: "Je tente la PS5" },
-    { id: "iphone", image: "/photos/prizes/iphone.png", name: "iPhone 15 Pro", ctaLabel: "Je veux l'iPhone" },
     { id: "ipad", image: "/photos/prizes/ipad.png", name: "iPad mini", ctaLabel: "Décrocher l'iPad" },
     { id: "jersey", image: "/photos/prizes/jersey.png", name: "Maillot de foot", ctaLabel: "Porter le maillot" },
   ],
   en: [
     { id: "ps5", image: "/photos/prizes/ps5.png", name: "PS5", ctaLabel: "Go for the PS5" },
-    { id: "iphone", image: "/photos/prizes/iphone.png", name: "iPhone 15 Pro", ctaLabel: "I want the iPhone" },
     { id: "ipad", image: "/photos/prizes/ipad.png", name: "iPad mini", ctaLabel: "Grab the iPad" },
     { id: "jersey", image: "/photos/prizes/jersey.png", name: "Football jersey", ctaLabel: "Get the jersey" },
   ],
