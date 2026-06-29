@@ -12,6 +12,7 @@ import { smoothScrollTop } from "@/lib/scroll";
 const NAV_LINKS = [
   { href: "/#comment",    id: "comment",    key: "howItWorks" },
   { href: "/#lots",       id: "lots",       key: "prizes"     },
+  { href: "/clubs",       id: null,         key: "clubs"      },
   { href: "/partenaires", id: null,         key: "partners"   },
   { href: "/#faq",        id: "faq",        key: "faq"        },
 ] as const;
