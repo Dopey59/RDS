@@ -11,7 +11,6 @@ const COPY: Record<
     subtitle: string;
     codeLabel: string;
     pasteHint: string | null;
-    showButton: boolean;
   }
 > = {
   join: {
@@ -21,7 +20,6 @@ const COPY: Record<
     codeLabel: "Code parrain",
     pasteHint:
       "À coller dans la section « Parraine tes amis » depuis ton profil dans l’app.",
-    showButton: false,
   },
   club: {
     title: "Rejoins RDS avec ton club",
@@ -29,15 +27,13 @@ const COPY: Record<
       "Ton club t’invite sur Renard des Surfaces, le jeu de grattage de la Coupe du Monde.",
     codeLabel: "Code club",
     pasteHint: "À coller dans « Code parrain ou club » à l’inscription.",
-    showButton: false,
   },
   group: {
     title: "Tu as été invité !",
     subtitle:
       "Rejoins le groupe dans l’appli Renard des Surfaces et affronte tes amis sur la Coupe du Monde.",
     codeLabel: "Code groupe",
-    pasteHint: null,
-    showButton: true,
+    pasteHint: "Ouvre l’app et saisis ce code pour rejoindre le groupe.",
   },
 };
 
@@ -45,7 +41,6 @@ const COPY: Record<
 export function InvitePage({ variant, code }: { variant: Variant; code: string }) {
   const copy = COPY[variant];
   const cleanCode = code.trim().toUpperCase();
-  const deepLink = `rds://${variant}/${encodeURIComponent(cleanCode)}`;
 
   return (
     <main
@@ -90,16 +85,6 @@ export function InvitePage({ variant, code }: { variant: Variant; code: string }
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
             {copy.pasteHint}
           </p>
-        )}
-
-        {/* CTA app — uniquement quand le deep-link est le mécanisme (groupes) */}
-        {copy.showButton && (
-          <a
-            href={deepLink}
-            className="mt-6 flex min-h-13 w-full items-center justify-center rounded-full bg-orange-500 px-8 py-4 text-base font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-600"
-          >
-            Ouvrir dans l’app
-          </a>
         )}
 
         {/* Stores */}
