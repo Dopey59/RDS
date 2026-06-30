@@ -6,28 +6,38 @@ type Variant = "join" | "club" | "group";
 
 const COPY: Record<
   Variant,
-  { title: string; subtitle: string; codeLabel: string; showHint: boolean }
+  {
+    title: string;
+    subtitle: string;
+    codeLabel: string;
+    pasteHint: string | null;
+    showButton: boolean;
+  }
 > = {
   join: {
     title: "Tu as été parrainé !",
     subtitle:
       "Rejoins Renard des Surfaces, le jeu de grattage de la Coupe du Monde, et profite de ton parrainage.",
     codeLabel: "Code parrain",
-    showHint: true,
+    pasteHint:
+      "À coller dans la section « Parraine tes amis » depuis ton profil dans l’app.",
+    showButton: false,
   },
   club: {
     title: "Rejoins RDS avec ton club",
     subtitle:
       "Ton club t’invite sur Renard des Surfaces, le jeu de grattage de la Coupe du Monde.",
     codeLabel: "Code club",
-    showHint: true,
+    pasteHint: "À coller dans « Code parrain ou club » à l’inscription.",
+    showButton: false,
   },
   group: {
     title: "Tu as été invité !",
     subtitle:
       "Rejoins le groupe dans l’appli Renard des Surfaces et affronte tes amis sur la Coupe du Monde.",
     codeLabel: "Code groupe",
-    showHint: false,
+    pasteHint: null,
+    showButton: true,
   },
 };
 
@@ -76,18 +86,20 @@ export function InvitePage({ variant, code }: { variant: Variant; code: string }
         {/* Chip code — cliquable, copie dans le presse-papier */}
         <CopyCode code={cleanCode} label={copy.codeLabel} />
 
-        {/* CTA app */}
-        <a
-          href={deepLink}
-          className="mt-6 flex min-h-13 w-full items-center justify-center rounded-full bg-orange-500 px-8 py-4 text-base font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-600"
-        >
-          Ouvrir dans l’app
-        </a>
-
-        {copy.showHint && (
-          <p className="mt-4 text-xs leading-relaxed text-white/45">
-            Déjà inscrit&nbsp;? Entre ce code dans «&nbsp;Code parrain ou club&nbsp;» à l’inscription.
+        {copy.pasteHint && (
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+            {copy.pasteHint}
           </p>
+        )}
+
+        {/* CTA app — uniquement quand le deep-link est le mécanisme (groupes) */}
+        {copy.showButton && (
+          <a
+            href={deepLink}
+            className="mt-6 flex min-h-13 w-full items-center justify-center rounded-full bg-orange-500 px-8 py-4 text-base font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-600"
+          >
+            Ouvrir dans l’app
+          </a>
         )}
 
         {/* Stores */}
