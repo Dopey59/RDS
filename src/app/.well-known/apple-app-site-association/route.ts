@@ -6,7 +6,11 @@ export function GET() {
       details: [
         {
           appIDs: ["74BLQLWVHY.com.grandjeu.rds"],
-          components: [{ "/": "/group/*", comment: "Lien d'invitation de groupe" }],
+          components: [
+            { "/": "/group/*", comment: "Lien d'invitation de groupe" },
+            { "/": "/join/*", comment: "Lien de parrainage" },
+            { "/": "/club/*", comment: "Lien d'attribution club" },
+          ],
         },
       ],
     },

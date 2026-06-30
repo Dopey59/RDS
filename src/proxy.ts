@@ -19,8 +19,12 @@ export default function proxy(request: NextRequest) {
     return NextResponse.redirect(url, { status: 308 });
   }
 
-  // /group/[code] est hors [locale], ne pas laisser next-intl l'intercepter
-  if (pathname.startsWith("/group/")) {
+  // /group, /join, /club sont hors [locale], ne pas laisser next-intl les intercepter
+  if (
+    pathname.startsWith("/group/") ||
+    pathname.startsWith("/join/") ||
+    pathname.startsWith("/club/")
+  ) {
     return NextResponse.next();
   }
 
@@ -28,6 +32,6 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Tout sauf /api, /group, les internes Next, et les fichiers (avec extension)
-  matcher: ["/((?!api|group|_next|_vercel|.*\\..*).*)"],
+  // Tout sauf /api, /group, /join, /club, les internes Next, et les fichiers (avec extension)
+  matcher: ["/((?!api|group|join|club|_next|_vercel|.*\\..*).*)"],
 };
