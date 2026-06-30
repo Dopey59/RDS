@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/links";
+import { CopyCode } from "./CopyCode";
 
 type Variant = "join" | "club" | "group";
 
@@ -72,15 +73,8 @@ export function InvitePage({ variant, code }: { variant: Variant; code: string }
           {copy.subtitle}
         </p>
 
-        {/* Chip code */}
-        <div className="mt-8 w-full rounded-2xl border border-white/12 bg-white/[0.06] px-5 py-4 backdrop-blur">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white/45">
-            {copy.codeLabel}
-          </p>
-          <p className="mt-1 font-display text-3xl tracking-[0.18em] text-orange-400 sm:text-4xl">
-            {cleanCode}
-          </p>
-        </div>
+        {/* Chip code — cliquable, copie dans le presse-papier */}
+        <CopyCode code={cleanCode} label={copy.codeLabel} />
 
         {/* CTA app */}
         <a
