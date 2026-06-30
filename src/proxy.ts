@@ -32,6 +32,7 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Tout sauf /api, /group, /join, /club, les internes Next, et les fichiers (avec extension)
-  matcher: ["/((?!api|group|join|club|_next|_vercel|.*\\..*).*)"],
+  // Tout sauf /api, /group/, /join/, /club/, les internes Next, et les fichiers (avec extension)
+  // Note: slash final sur club/ pour ne pas avaler la page /clubs (pluriel)
+  matcher: ["/((?!api|group/|join/|club/|_next|_vercel|.*\\..*).*)"],
 };
