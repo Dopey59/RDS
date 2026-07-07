@@ -213,7 +213,25 @@ export const terms: Record<Locale, LegalDoc> = {
         ],
       },
       {
-        h: "Article 8 — Droit applicable",
+        h: "Article 8 — Système de parrainage",
+        paras: [
+          "Le joueur peut inviter d'autres personnes à rejoindre Renard des Surfaces via son lien ou code de parrainage personnel. Des points de parrainage sont attribués au joueur parrain sous réserve que les conditions suivantes soient remplies :",
+        ],
+        bullets: [
+          "Le filleul doit s'inscrire via le lien ou code de parrainage du parrain.",
+          "Le filleul doit compléter entièrement son profil (informations personnelles et adresse de livraison).",
+          "Le filleul doit avoir gratté au moins une carte virtuelle suite à un but sur un match qu'il a sélectionné.",
+        ],
+      },
+      {
+        h: "",
+        paras: [
+          "Les points de parrainage ne sont attribués qu'une fois ces trois conditions remplies. Tout abus du système de parrainage (création de faux comptes, comptes inactifs, manipulation du classement) entraînera la suspension des points concernés et pourra conduire à l'exclusion définitive du compte.",
+          "La société Grand Jeu SAS se réserve le droit de vérifier l'activité des filleuls et d'invalider tout parrainage jugé déloyal envers la communauté de joueurs.",
+        ],
+      },
+      {
+        h: "Article 9 — Droit applicable",
         paras: [
           "Les présentes conditions sont soumises au droit français. Tout litige relève de la compétence des juridictions françaises.",
         ],
@@ -269,7 +287,25 @@ export const terms: Record<Locale, LegalDoc> = {
         ],
       },
       {
-        h: "Article 8 — Governing law",
+        h: "Article 8 — Referral system",
+        paras: [
+          "Players can invite others to join Renard des Surfaces via their personal referral link or code. Referral points are credited to the referring player provided that the following conditions are met:",
+        ],
+        bullets: [
+          "The invitee must sign up using the referrer's link or code.",
+          "The invitee must fully complete their profile (personal information and shipping address).",
+          "The invitee must have scratched at least one virtual card following a goal in a match they selected.",
+        ],
+      },
+      {
+        h: "",
+        paras: [
+          "Referral points are only credited once all three conditions are met. Any abuse of the referral system (creation of fake accounts, inactive accounts, ranking manipulation) will result in the suspension of the points concerned and may lead to permanent account exclusion.",
+          "Grand Jeu SAS reserves the right to verify invitee activity and to invalidate any referral deemed unfair to the player community.",
+        ],
+      },
+      {
+        h: "Article 9 — Governing law",
         paras: [
           "These terms are governed by French law. Any dispute falls under the jurisdiction of the French courts.",
         ],
